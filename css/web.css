@@ -11,3 +11,18 @@
   overflow: auto;
   margin: 0;
 }
+
+/* Settings page editors */
+.ws-section-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.ws-section-row input[type="text"] { flex: 1; }
+.ws-section-row input[type="checkbox"] { width: auto; }
+.ws-section-row .hint { margin: 0; white-space: nowrap; }
+.ws-section-row .button.small { padding: 3px 9px; }
+.ws-prompt-pick { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+.ws-prompt-pick select { width: auto; max-width: 100%; }
+#ws-prompt-status.outdated { color: var(--warn-text); font-weight: 600; }
+@media (max-width: 640px) {
+  .ws-section-row { flex-wrap: wrap; }
+  .ws-section-row input[type="text"] { flex: 1 1 calc(100% - 40px); }  /* the name gets its own line */
+  .ws-section-row .hint { white-space: normal; flex: 1 1 100%; }
+}

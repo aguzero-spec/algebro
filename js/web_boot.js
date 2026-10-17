@@ -1,7 +1,7 @@
 // Starts the web version: connects the shared interface (app.js, the same one the desktop
 // apps use) to local_api.js instead of a server, then loads the interface.
 
-import { backupFile, download, handle, loadDefaults, restoreBackup } from "./local_api.js?v=a95f5dbc98";
+import { backupFile, download, handle, loadDefaults, restoreBackup } from "./local_api.js?v=6f4fac7a92";
 
 window.LOCAL_API = handle;
 
@@ -28,6 +28,8 @@ try {
   await loadDefaults();
   await loadClassic(`js/markdown.js?v=${build}`);
   await loadClassic(`js/app.js?v=${build}`);
+  const { startSettingsEditors } = await import("./settings_ui.js?v=6f4fac7a92");
+  await startSettingsEditors();
 } catch (e) {
   const banner = document.querySelector("#error-banner");
   banner.textContent = `The app couldn't start: ${e.message} Check your internet connection and reload the page.`;

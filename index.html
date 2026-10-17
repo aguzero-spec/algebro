@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="en" data-platform="web" data-build="a95f5dbc98">
+<html lang="en" data-platform="web" data-build="6f4fac7a92">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.anthropic.com; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.anthropic.com; worker-src 'self'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
   <title>AlgeBro · Lesson Packet Builder</title>
   <meta name="description" content="Turns a lesson outline into a full TEKS-aligned lesson packet with Claude.">
   <link rel="icon" href="icon.png">
-  <link rel="stylesheet" href="css/app.css?v=a95f5dbc98">
-  <link rel="stylesheet" href="css/web.css?v=a95f5dbc98">
+  <link rel="stylesheet" href="css/app.css?v=6f4fac7a92">
+  <link rel="stylesheet" href="css/web.css?v=6f4fac7a92">
 </head>
 <body>
   <header class="topbar">
@@ -324,6 +324,59 @@ Students show learning by explaining one problem two ways: with a model and with
         <p id="backup-result" class="hint" aria-live="polite"></p>
       </div>
 
+      <!-- Web version: settings are edited here (the desktop app uses files in its data folder). -->
+      <div class="card web-only">
+        <h2>Claude settings</h2>
+        <div class="grid">
+          <label>Model <select id="ws-model"></select></label>
+          <label>Effort <select id="ws-effort"></select>
+            <span class="hint">Higher effort can mean better packets, with more tokens (and cost).</span></label>
+          <label>Length limit per section (tokens) <input id="ws-max" type="number" min="1000" max="128000" step="1000">
+            <span class="hint">If a section is cut off, raise this. 50,000 fits a long multi-day plan.</span></label>
+          <div class="wide">
+            <label class="check-row"><input type="checkbox" id="ws-new-page">
+              <span>Start each section on a new page (Word and PDF)</span></label>
+            <label class="check-row"><input type="checkbox" id="ws-review-note">
+              <span>Add the “Review for accuracy” note to exported packets</span></label>
+          </div>
+        </div>
+        <div class="actions">
+          <button type="button" class="button" id="ws-save-config">Save settings</button>
+          <span id="ws-config-result" class="hint" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <div class="card web-only">
+        <h2>Sections</h2>
+        <p class="muted">The sections a packet can have, in order. Ticked ones are selected for new packets.
+          A new section gets its own prompt (below) for you to fill in.</p>
+        <div id="ws-sections"></div>
+        <div class="row add-row">
+          <input id="ws-new-section" placeholder="New section name, e.g. Exit Tickets" maxlength="80">
+          <button type="button" class="button secondary" id="ws-add-section">Add section</button>
+        </div>
+        <div class="actions">
+          <button type="button" class="button" id="ws-save-sections">Save sections</button>
+          <span id="ws-sections-result" class="hint" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <div class="card web-only">
+        <h2>Prompts</h2>
+        <p class="muted">The instructions sent to Claude. Placeholders in double braces are filled in from your form,
+          e.g. <code>{{seed}}</code> (your lesson outline), <code>{{grade_level}}</code>, <code>{{teks}}</code>,
+          <code>{{lesson_plan}}</code>. Your edits apply to the next section you generate, and app updates never replace them.</p>
+        <label class="ws-prompt-pick">Prompt <select id="ws-prompt"></select></label>
+        <p id="ws-prompt-status" class="hint"></p>
+        <textarea id="ws-prompt-text" class="section-text" rows="16" spellcheck="false"></textarea>
+        <div class="actions">
+          <button type="button" class="button" id="ws-save-prompt">Save prompt</button>
+          <button type="button" class="button secondary" id="ws-restore-prompt">Restore the default</button>
+          <button type="button" class="button secondary danger" id="ws-reset-all">Reset all prompts and sections</button>
+        </div>
+        <p id="ws-prompt-result" class="hint" aria-live="polite"></p>
+      </div>
+
       <div class="card desktop-only">
         <h2>Prompts and settings files</h2>
         <p>The instructions sent to Claude are plain text files you can edit with TextEdit.
@@ -374,6 +427,6 @@ Students show learning by explaining one problem two ways: with a model and with
     </section>
   </main>
 
-  <script type="module" src="js/web_boot.js?v=a95f5dbc98"></script>
+  <script type="module" src="js/web_boot.js?v=6f4fac7a92"></script>
 </body>
 </html>

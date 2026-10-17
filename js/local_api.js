@@ -3,15 +3,16 @@
 // those calls come here instead and are answered inside the browser. Same checks and
 // messages as server.py: keep them in step.
 
-import { GenerationError, generate as claudeGenerate, testKey } from "./claude.js?v=a95f5dbc98";
-import { ExportError, build as buildExport, defaultTitle, toMarkdown } from "./export.js?v=a95f5dbc98";
-import { build as buildPrompt } from "./prompts.js?v=a95f5dbc98";
-import { StorageError, db, keyStore } from "./store.js?v=a95f5dbc98";
+import { GenerationError, generate as claudeGenerate, testKey } from "./claude.js?v=6f4fac7a92";
+import { ExportError, build as buildExport, defaultTitle, toMarkdown } from "./export.js?v=6f4fac7a92";
+import { build as buildPrompt } from "./prompts.js?v=6f4fac7a92";
+import { StorageError, db, keyStore } from "./store.js?v=6f4fac7a92";
+import { loadScript } from "./vendor.js?v=6f4fac7a92";
 
 // Packet ids become storage keys and file names, so only allow safe characters.
 const SAFE_ID = /^[A-Za-z0-9_-]{1,120}$/;
 const KEY_PATTERN = /^sk-ant-[A-Za-z0-9_-]{10,300}$/;
-const ALLOWED_TYPES = [".txt", ".md"]; // .docx and .pdf: coming in a later web update
+const ALLOWED_TYPES = [".docx", ".pdf", ".txt", ".md"];
 
 class UserError extends Error {}
 
@@ -26,11 +27,155 @@ export async function loadDefaults() {
   const [defaults, math, elps] = await Promise.all([
     get("data/defaults.json"), get("data/tx_math_6_8.json"), get("data/tx_elps_4_12.json")]);
   DEFAULTS = { ...defaults, standards: { math, elps } };
+  DEFAULT_HASHES = Object.fromEntries(await Promise.all(
+    Object.entries(DEFAULTS.prompts).map(async ([name, text]) => [name, await sha256(text)])));
+  await loadOverrides();
   return DEFAULTS;
 }
 
-const config = () => DEFAULTS.config;
-const sections = () => [...DEFAULTS.sections].sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+// ---- The teacher's own settings (Settings page), kept in this browser ----
+// Like the desktop app's data folder: edited prompts are never replaced by an update;
+// new default sections are added unless the teacher removed them on purpose.
+
+let DEFAULT_HASHES = {};
+const OVERRIDES = { config: {}, prompts: {}, sections: null };
+const EFFORT_LEVELS = ["low", "medium", "high", "xhigh", "max"];
+const EDITABLE_STYLE = ["include_review_note", "new_page_per_section"];
+
+async function sha256(text) {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function loadOverrides() {
+  try {
+    OVERRIDES.config = (await db.get("settings", "config")) || {};
+    OVERRIDES.prompts = (await db.get("settings", "prompts")) || {};
+    OVERRIDES.sections = (await db.get("settings", "sections")) || null;
+    if (OVERRIDES.sections) {
+      const seen = new Set((await db.get("settings", "sections_seen")) || OVERRIDES.sections.map((s) => s.id));
+      const have = new Set(OVERRIDES.sections.map((s) => s.id));
+      const added = DEFAULTS.sections.filter((s) => !seen.has(s.id) && !have.has(s.id));
+      if (added.length) {
+        OVERRIDES.sections.push(...added.map((s) => ({ ...s, order: 900 + (s.order ?? 0) })));
+        await db.put("settings", OVERRIDES.sections, "sections");
+      }
+      await db.put("settings", [...new Set([...seen, ...DEFAULTS.sections.map((s) => s.id)])], "sections_seen");
+    }
+  } catch {
+    // Storage blocked (e.g. private browsing): use the defaults; saving will explain the problem.
+  }
+}
+
+function config() {
+  const c = { ...DEFAULTS.config, ...OVERRIDES.config };
+  c.export_style = { ...DEFAULTS.config.export_style, ...(OVERRIDES.config.export_style || {}) };
+  return c;
+}
+
+const sections = () => [...(OVERRIDES.sections || DEFAULTS.sections)].sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+
+const prompts = () => ({ ...DEFAULTS.prompts,
+  ...Object.fromEntries(Object.entries(OVERRIDES.prompts).map(([name, p]) => [name, p.text])) });
+
+// Edited prompts whose default has changed since the teacher's copy was made.
+const outdatedPrompts = () => Object.entries(OVERRIDES.prompts)
+  .filter(([name, p]) => DEFAULT_HASHES[name] && p.base !== DEFAULT_HASHES[name]).map(([name]) => name);
+
+function webSettings() {
+  const c = config();
+  return {
+    config: { model: c.model, effort: c.effort || "", max_output_tokens: c.max_output_tokens,
+              ...Object.fromEntries(EDITABLE_STYLE.map((k) => [k, Boolean(c.export_style[k])])) },
+    models: [...new Set([c.model, ...Object.keys(c.prices || {})])],
+    efforts: EFFORT_LEVELS,
+    sections: sections(),
+    prompts: Object.keys(prompts()).sort().map((name) => ({
+      name, text: prompts()[name], edited: name in OVERRIDES.prompts, custom: !(name in DEFAULTS.prompts),
+      outdated: outdatedPrompts().includes(name), used_by: sections().filter((s) => s.prompt_file === name).map((s) => s.name),
+    })),
+  };
+}
+
+async function saveConfig(body) {
+  const model = String(body.model || "").trim();
+  if (!/^[\w.-]{3,80}$/.test(model)) throw new UserError("Choose a model.");
+  if (body.effort && !EFFORT_LEVELS.includes(body.effort)) throw new UserError("Choose an effort level.");
+  const max = Number(body.max_output_tokens);
+  if (!Number.isInteger(max) || max < 1000 || max > 128000) {
+    throw new UserError("The length limit should be a whole number from 1,000 to 128,000.");
+  }
+  const next = { model, effort: body.effort || null, max_output_tokens: max,
+                 export_style: Object.fromEntries(EDITABLE_STYLE.map((k) => [k, Boolean(body[k])])) };
+  await db.put("settings", next, "config");
+  OVERRIDES.config = next;
+  return webSettings();
+}
+
+async function savePrompt(body) {
+  const name = String(body.name || "");
+  if (!(name in prompts())) throw new UserError("That prompt doesn't exist.");
+  const text = String(body.text ?? "");
+  if (!text.trim()) throw new UserError("A prompt can't be empty. To undo your changes, use “Restore the default”.");
+  if (text.length > 100000) throw new UserError("That prompt is too long (over 100,000 characters).");
+  const next = { ...OVERRIDES.prompts };
+  if (DEFAULTS.prompts[name] === text) delete next[name]; // identical to the default: just use the default
+  else next[name] = { text, base: OVERRIDES.prompts[name]?.base ?? DEFAULT_HASHES[name] ?? null };
+  await db.put("settings", next, "prompts");
+  OVERRIDES.prompts = next;
+  return webSettings();
+}
+
+async function restorePrompt(body) {
+  const name = String(body.name || "");
+  if (!(name in DEFAULTS.prompts)) throw new UserError("Only the built-in prompts have a default to restore.");
+  const next = { ...OVERRIDES.prompts };
+  delete next[name];
+  await db.put("settings", next, "prompts");
+  OVERRIDES.prompts = next;
+  return webSettings();
+}
+
+const SECTION_ID = /^[a-z][a-z0-9_]{0,40}$/;
+
+async function saveSections(body) {
+  const list = body.sections;
+  if (!Array.isArray(list) || !list.length) throw new UserError("Keep at least one section.");
+  if (list.length > 30) throw new UserError("That's too many sections (at most 30).");
+  const ids = new Set();
+  const nextPrompts = { ...OVERRIDES.prompts };
+  const clean = list.map((s, n) => {
+    const name = String(s.name || "").trim();
+    if (!name) throw new UserError(`Section ${n + 1} needs a name.`);
+    const id = String(s.id || "");
+    if (!SECTION_ID.test(id) || ids.has(id)) throw new UserError(`Section “${name}” has an invalid or repeated id.`);
+    ids.add(id);
+    const promptFile = String(s.prompt_file || `${id}.txt`);
+    if (!/^[a-z0-9_]+\.txt$/.test(promptFile)) throw new UserError(`Section “${name}” has an invalid prompt file.`);
+    if (!(promptFile in prompts()) && !(promptFile in nextPrompts)) {
+      // A new section: start its prompt from a simple template the teacher can edit.
+      nextPrompts[promptFile] = { text: `Write the “${name}” section for this lesson plan:\n\n<lesson_plan>\n{{lesson_plan}}\n</lesson_plan>\n\n`
+        + "Describe here what this section should contain, how long it should be, and how to format it.\n", base: null };
+    }
+    const clean = { id, name: name.slice(0, 80), prompt_file: promptFile, on_by_default: Boolean(s.on_by_default), order: n + 1 };
+    if (s.follows && typeof s.follows === "string") clean.follows = s.follows;
+    return clean;
+  });
+  await db.put("settings", nextPrompts, "prompts");
+  await db.put("settings", clean, "sections");
+  await db.put("settings", [...new Set([...clean.map((s) => s.id), ...DEFAULTS.sections.map((s) => s.id)])], "sections_seen");
+  OVERRIDES.prompts = nextPrompts;
+  OVERRIDES.sections = clean;
+  return webSettings();
+}
+
+async function resetAll() {
+  await db.put("settings", {}, "prompts");
+  await db.put("settings", null, "sections");
+  OVERRIDES.prompts = {};
+  OVERRIDES.sections = null;
+  return webSettings();
+}
 
 // ---- Routing ----
 
@@ -50,6 +195,13 @@ const ROUTES = [
   ["DELETE", /^\/api\/packets\/([^/]+)$/, (_, id) => deletePacket(id)],
   ["GET", /^\/api\/usage$/, usageSummary],
   ["POST", /^\/api\/export$/, exportPacket],
+  // Web only: the Settings page editors (the desktop app uses files in its data folder instead).
+  ["GET", /^\/api\/web\/settings$/, webSettings],
+  ["POST", /^\/api\/web\/config$/, saveConfig],
+  ["POST", /^\/api\/web\/prompt$/, savePrompt],
+  ["POST", /^\/api\/web\/prompt\/restore$/, restorePrompt],
+  ["POST", /^\/api\/web\/sections$/, saveSections],
+  ["POST", /^\/api\/web\/reset$/, resetAll],
 ];
 
 // Same contract as app.js's api(): returns the reply, or throws an Error with a readable message.
@@ -83,9 +235,8 @@ function status() {
     max_upload_mb: config().max_upload_mb,
     max_seed_characters: config().max_seed_characters,
     allowed_types: ALLOWED_TYPES,
-    prompts_outdated: [],
+    prompts_outdated: outdatedPrompts(),
     platform: "web",
-    export_formats: ["docx", "md"], // PDF and PowerPoint: coming in a later web update
   };
 }
 
@@ -112,15 +263,12 @@ async function saveKey(body) {
 
 // ---- Lesson outline from a file ----
 
-function readSeed(body) {
+async function readSeed(body) {
   const name = String(body.filename || "");
   const ext = name.includes(".") ? name.slice(name.lastIndexOf(".")).toLowerCase() : "";
-  if (ext === ".docx" || ext === ".pdf") {
-    throw new UserError(`Reading ${ext} files is coming soon to the web version. For now, open “${name}”, `
-      + "copy the text, and paste it into the box.");
-  }
   if (!ALLOWED_TYPES.includes(ext)) {
-    throw new UserError(`“${name}” isn't a supported file type. Use .txt or .md, or copy the text and paste it in.`);
+    throw new UserError(`“${name}” isn't a supported file type. Use .docx, .pdf, .txt, or .md `
+      + "(for other formats, copy the text and paste it in).");
   }
   const maxMb = config().max_upload_mb || 10;
   let bytes;
@@ -130,9 +278,50 @@ function readSeed(body) {
     throw new UserError("The file didn't arrive intact. Please try again.");
   }
   if (bytes.length > maxMb * 1024 * 1024) throw new UserError(`“${name}” is larger than ${maxMb} MB.`);
-  const text = tidy(decodeText(bytes));
-  if (!text) throw new UserError(`No text was found in “${name}”.`);
+  let raw;
+  try {
+    raw = ext === ".docx" ? await readDocx(bytes) : ext === ".pdf" ? await readPdf(bytes) : decodeText(bytes);
+  } catch (e) {
+    if (e instanceof UserError) throw e;
+    throw new UserError(`Couldn't read “${name}”. It may be damaged or not really a ${ext} file. `
+      + "Try opening it and pasting the text instead.");
+  }
+  const text = tidy(raw);
+  if (!text) {
+    throw new UserError(`No text was found in “${name}”.`
+      + (ext === ".pdf" ? " It may be a scanned image; copy and paste the text instead." : ""));
+  }
   return { text, words: text.split(/\s+/).filter(Boolean).length, characters: text.length };
+}
+
+// Word: the text of every paragraph (and table cell), in order.
+async function readDocx(bytes) {
+  const mammoth = await loadScript("vendor/mammoth-1.13.0/mammoth.browser.min.js", "mammoth");
+  const result = await mammoth.extractRawText({ arrayBuffer: bytes.buffer });
+  return result.value;
+}
+
+// PDF: the text of every page, read by pdf.js in a background worker.
+async function readPdf(bytes) {
+  const pdfjs = await import("../vendor/pdfjs-6.4.299/pdf.min.mjs");
+  pdfjs.GlobalWorkerOptions.workerSrc = new URL("../vendor/pdfjs-6.4.299/pdf.worker.min.mjs", import.meta.url).href;
+  const task = pdfjs.getDocument({ data: bytes, isEvalSupported: false, disableFontFace: true });
+  let pdf;
+  try {
+    pdf = await task.promise;
+  } catch (e) {
+    if (e?.name === "PasswordException") {
+      throw new UserError("This PDF is password-protected. Open it, copy the text, and paste it in.");
+    }
+    throw e;
+  }
+  const pages = [];
+  for (let n = 1; n <= pdf.numPages; n++) {
+    const content = await (await pdf.getPage(n)).getTextContent();
+    pages.push(content.items.map((item) => item.str + (item.hasEOL ? "\n" : "")).join(""));
+  }
+  await task.destroy(); // closes the file and its background worker
+  return pages.join("\n\n");
 }
 
 function decodeText(bytes) {
@@ -189,7 +378,7 @@ async function generateSection(body) {
 
   const { system, user } = buildPrompt({
     section, options, lessonPlan: String(body.lesson_plan || ""), extraInstructions: extra,
-    currentText, followText: String(body.follow_text || ""), prompts: DEFAULTS.prompts, standards: DEFAULTS.standards,
+    currentText, followText: String(body.follow_text || ""), prompts: prompts(), standards: DEFAULTS.standards,
   });
   const result = await claudeGenerate({ apiKey: keyStore.get(), system, user, config: config() });
   await recordUsage(result.model, section.id + (currentText ? " (revise)" : ""), result.usage, result.cost);
