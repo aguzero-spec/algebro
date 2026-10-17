@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-platform="web" data-build="6f4fac7a92">
+<html lang="en" data-platform="web" data-build="8b2ec44a96">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,8 +8,8 @@
   <title>AlgeBro · Lesson Packet Builder</title>
   <meta name="description" content="Turns a lesson outline into a full TEKS-aligned lesson packet with Claude.">
   <link rel="icon" href="icon.png">
-  <link rel="stylesheet" href="css/app.css?v=6f4fac7a92">
-  <link rel="stylesheet" href="css/web.css?v=6f4fac7a92">
+  <link rel="stylesheet" href="css/app.css?v=8b2ec44a96">
+  <link rel="stylesheet" href="css/web.css?v=8b2ec44a96">
 </head>
 <body>
   <header class="topbar">
@@ -39,6 +39,8 @@
       <p>The writing is done by <strong>Claude</strong>, an AI from Anthropic. The app uses
          <strong>your own Claude account</strong>, so any cost is billed to you by Anthropic, usually
          well under a dollar per packet. Your packets stay on this computer.</p>
+      <p class="web-only"><strong>Bookmark this page</strong> and only use this address:
+         <strong>aguzero-spec.github.io/algebro</strong> (a copy of the site elsewhere could be altered to steal keys).</p>
 
       <div class="card">
         <h2>Step 1: Add your Claude API key</h2>
@@ -292,7 +294,7 @@ Students show learning by explaining one problem two ways: with a model and with
         </table>
         <p id="usage-empty" class="muted" hidden>No usage yet. Costs appear here after your first real (non-MOCK) generation.</p>
       </div>
-      <p class="muted">These are estimates from the prices in <code>config.yaml</code>. Your actual bill is at
+      <p class="muted">These are estimates from the prices <span data-web="built into the app">in config.yaml</span>. Your actual bill is at
         <a href="https://platform.claude.com" target="_blank" rel="noopener">platform.claude.com</a> (open Usage or Billing).
         The log on this computer keeps only token counts and costs, never packet content.
         <button type="button" class="link-button desktop-only" id="usage-open-folder">Show the log file</button></p>
@@ -427,6 +429,6 @@ Students show learning by explaining one problem two ways: with a model and with
     </section>
   </main>
 
-  <script type="module" src="js/web_boot.js?v=6f4fac7a92"></script>
+  <script type="module" src="js/web_boot.js?v=8b2ec44a96"></script>
 </body>
 </html>

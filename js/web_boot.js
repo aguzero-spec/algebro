@@ -1,7 +1,35 @@
 // Starts the web version: connects the shared interface (app.js, the same one the desktop
 // apps use) to local_api.js instead of a server, then loads the interface.
 
-import { backupFile, download, handle, loadDefaults, restoreBackup } from "./local_api.js?v=6f4fac7a92";
+import { backupFile, download, handle, loadDefaults, restoreBackup } from "./local_api.js?v=8b2ec44a96";
+
+// Refuse to run inside another website's frame (a look-alike page could trick clicks;
+// GitHub Pages can't send the header that normally prevents this).
+if (window.top !== window.self) {
+  document.body.replaceChildren(Object.assign(document.createElement("p"), {
+    className: "banner error",
+    textContent: "For your security, Lesson Packet Builder only runs in its own tab. Open aguzero-spec.github.io/algebro directly.",
+  }));
+  throw new Error("Framed: not starting.");
+}
+
+// Browsers older than about 2023 lack features the app needs: say so instead of half-working.
+function browserProblem() {
+  try {
+    new RegExp("(?<![\\p{L}])x", "u"); // lookbehind + Unicode letters (Safari 16.4+)
+  } catch {
+    return true;
+  }
+  return typeof structuredClone !== "function" || typeof TextDecoderStream !== "function"
+    || typeof indexedDB === "undefined" || !window.crypto?.subtle;
+}
+if (browserProblem()) {
+  const banner = document.querySelector("#error-banner");
+  banner.textContent = "This browser is too old for Lesson Packet Builder. Update it, or use a current version of "
+    + "Chrome, Edge, Safari, or Firefox (on a Chromebook, update ChromeOS).";
+  banner.hidden = false;
+  throw new Error("Unsupported browser.");
+}
 
 window.LOCAL_API = handle;
 
@@ -28,7 +56,7 @@ try {
   await loadDefaults();
   await loadClassic(`js/markdown.js?v=${build}`);
   await loadClassic(`js/app.js?v=${build}`);
-  const { startSettingsEditors } = await import("./settings_ui.js?v=6f4fac7a92");
+  const { startSettingsEditors } = await import("./settings_ui.js?v=8b2ec44a96");
   await startSettingsEditors();
 } catch (e) {
   const banner = document.querySelector("#error-banner");

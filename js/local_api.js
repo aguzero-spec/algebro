@@ -3,11 +3,11 @@
 // those calls come here instead and are answered inside the browser. Same checks and
 // messages as server.py: keep them in step.
 
-import { GenerationError, generate as claudeGenerate, testKey } from "./claude.js?v=6f4fac7a92";
-import { ExportError, build as buildExport, defaultTitle, toMarkdown } from "./export.js?v=6f4fac7a92";
-import { build as buildPrompt } from "./prompts.js?v=6f4fac7a92";
-import { StorageError, db, keyStore } from "./store.js?v=6f4fac7a92";
-import { loadScript } from "./vendor.js?v=6f4fac7a92";
+import { GenerationError, generate as claudeGenerate, testKey } from "./claude.js?v=8b2ec44a96";
+import { ExportError, build as buildExport, defaultTitle, toMarkdown } from "./export.js?v=8b2ec44a96";
+import { build as buildPrompt } from "./prompts.js?v=8b2ec44a96";
+import { StorageError, db, keyStore } from "./store.js?v=8b2ec44a96";
+import { loadScript } from "./vendor.js?v=8b2ec44a96";
 
 // Packet ids become storage keys and file names, so only allow safe characters.
 const SAFE_ID = /^[A-Za-z0-9_-]{1,120}$/;
@@ -294,8 +294,36 @@ async function readSeed(body) {
   return { text, words: text.split(/\s+/).filter(Boolean).length, characters: text.length };
 }
 
+// A .docx is a zip archive. Its directory lists how big each part becomes when unpacked:
+// refuse files that would unpack to something huge (a "zip bomb" can crash the browser tab).
+const MAX_UNPACKED_BYTES = 150 * 1024 * 1024;
+
+function unpackedSize(bytes) {
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  let end = -1;
+  for (let i = bytes.length - 22; i >= Math.max(0, bytes.length - 22 - 65535); i--) {
+    if (view.getUint32(i, true) === 0x06054b50) { end = i; break; } // end-of-directory record
+  }
+  if (end < 0) throw new Error("not a zip file");
+  const entries = view.getUint16(end + 10, true);
+  let at = view.getUint32(end + 16, true);
+  let total = 0;
+  for (let n = 0; n < entries; n++) {
+    if (at + 46 > bytes.length || view.getUint32(at, true) !== 0x02014b50) throw new Error("damaged zip directory");
+    const size = view.getUint32(at + 24, true);
+    if (size === 0xffffffff) return Infinity; // only enormous archives use this marker
+    total += size;
+    at += 46 + view.getUint16(at + 28, true) + view.getUint16(at + 30, true) + view.getUint16(at + 32, true);
+  }
+  return total;
+}
+
 // Word: the text of every paragraph (and table cell), in order.
 async function readDocx(bytes) {
+  if (unpackedSize(bytes) > MAX_UNPACKED_BYTES) {
+    throw new UserError("This Word file is unusually large inside (over 150 MB of text and pictures), so it wasn't opened. "
+      + "Copy the text you need and paste it in instead.");
+  }
   const mammoth = await loadScript("vendor/mammoth-1.13.0/mammoth.browser.min.js", "mammoth");
   const result = await mammoth.extractRawText({ arrayBuffer: bytes.buffer });
   return result.value;
@@ -449,6 +477,26 @@ export async function backupFile() {
            filename: `Lesson packets backup ${localIso().slice(0, 10)}.json`, count: packets.length };
 }
 
+// A packet from a file, reduced to what the app uses (files can be damaged or hand-edited).
+// Returns null if it isn't a usable packet.
+const SECTION_KEY = /^[A-Za-z0-9_-]{1,60}$/;
+const isPlainObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
+
+function cleanPacket(p) {
+  if (!isPlainObject(p) || !isPlainObject(p.sections) || !isPlainObject(p.options) || !Array.isArray(p.order)) return null;
+  const sections = {};
+  for (const [id, s] of Object.entries(p.sections)) {
+    if (!SECTION_KEY.test(id) || !isPlainObject(s)) continue;
+    sections[id] = { ...s, name: String(s.name ?? id), markdown: String(s.markdown ?? "") };
+  }
+  const order = [...new Set(p.order.filter((id) => typeof id === "string" && Object.hasOwn(sections, id)))];
+  if (!order.length) return null; // nothing in it
+  const instructions = isPlainObject(p.instructions)
+    ? Object.fromEntries(Object.entries(p.instructions).filter(([id, v]) => Object.hasOwn(sections, id) && typeof v === "string"))
+    : {};
+  return { ...p, sections, order, instructions, title: String(p.title ?? ""), saved_at: String(p.saved_at ?? "") };
+}
+
 // Accepts a backup file, or one packet saved by the desktop app (.json in its packets folder).
 // A packet already here is only replaced by a newer copy. Returns {added, updated, skipped}.
 export async function restoreBackup(text) {
@@ -461,10 +509,9 @@ export async function restoreBackup(text) {
   const list = Array.isArray(data?.packets) ? data.packets : data?.sections ? [data] : null;
   if (!list) throw new UserError("That file isn't a Lesson Packet Builder backup or saved packet.");
   const counts = { added: 0, updated: 0, skipped: 0 };
-  for (const p of list) {
-    const valid = p && typeof p === "object" && p.sections && typeof p.sections === "object" && !Array.isArray(p.sections)
-      && p.options && typeof p.options === "object" && Array.isArray(p.order);
-    if (!valid) { counts.skipped++; continue; }
+  for (const raw of list) {
+    const p = cleanPacket(raw);
+    if (!p) { counts.skipped++; continue; }
     if (!SAFE_ID.test(p.id || "")) p.id = newId(String(p.title || "packet"));
     const existing = await db.get("packets", p.id);
     if (existing && String(existing.saved_at || "") >= String(p.saved_at || "")) { counts.skipped++; continue; }

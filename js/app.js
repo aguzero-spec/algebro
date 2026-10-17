@@ -261,7 +261,7 @@ function collectOptions() {
 function checkOptions(o) {
   if (!o.seed) return "Add your lesson outline: type or paste it, or upload a file. (See “What should I include?” for help.)";
   const limit = STATUS.max_seed_characters || 60000;
-  if (o.seed.length > limit) return `Your lesson outline is too long (${o.seed.length.toLocaleString()} characters; the limit is ${limit.toLocaleString()}). Shorten it, or raise max_seed_characters in config.yaml.`;
+  if (o.seed.length > limit) return `Your lesson outline is too long (${o.seed.length.toLocaleString()} characters; the limit is ${limit.toLocaleString()}). Shorten it` + (onWeb() ? "." : ", or raise max_seed_characters in config.yaml.");
   return "";
 }
 
@@ -557,7 +557,7 @@ function updateTotal() {
 function describeUsage(result) {
   const u = result.usage;
   const tokensIn = u.input_tokens + u.cache_write_tokens + u.cache_read_tokens;
-  const cost = result.cost == null ? "cost unknown (no price in config.yaml)" : `about $${result.cost.toFixed(2)}`;
+  const cost = result.cost == null ? `cost unknown (no price${onWeb() ? " listed for this model" : " in config.yaml"})` : `about $${result.cost.toFixed(2)}`;
   return `${result.model} · ${tokensIn.toLocaleString()} tokens in · ${u.output_tokens.toLocaleString()} out · ${cost}`;
 }
 
@@ -788,7 +788,7 @@ async function loadUsage() {
     $("#usage-month-name").textContent = monthName(m.month);
     $("#usage-month-detail").textContent = m.calls
       ? `${m.calls} section${m.calls === 1 ? "" : "s"} written · ${m.input_tokens.toLocaleString()} tokens in · ${m.output_tokens.toLocaleString()} tokens out` +
-        (m.unpriced_calls ? ` · ${m.unpriced_calls} with no price in config.yaml (not included)` : "")
+        (m.unpriced_calls ? ` · ${m.unpriced_calls} with no price ${onWeb() ? "listed" : "in config.yaml"} (not included)` : "")
       : "Nothing generated yet this month.";
     $("#usage-models").textContent = u.by_model.length > 1
       ? "By model: " + u.by_model.map((b) => `${b.model} $${b.cost.toFixed(2)} (${b.calls})`).join(" · ")

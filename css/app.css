@@ -193,6 +193,12 @@ input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 
 .tune-row { flex-wrap: nowrap; align-items: flex-start; margin: 0; }
 .tune-row input, .tune-row textarea { flex: 1; }
 .tune-row .button { white-space: nowrap; min-width: 190px; }
+/* Narrow screens (phones): buttons go under their boxes. */
+@media (max-width: 640px) {
+  .tune-row { flex-wrap: wrap; }
+  .tune-row input, .tune-row textarea { flex: 1 1 100%; }
+  .tune-row .button { flex: 1 1 100%; min-width: 0; }
+}
 .undo-btn { font-size: 13px; }
 .tune-help { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
 .outline-help { margin: 0 0 10px; }

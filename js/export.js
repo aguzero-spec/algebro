@@ -1,7 +1,7 @@
 // Turns a packet (or one section of it) into a Word, PDF, PowerPoint, or Markdown file.
 // The browser version of app/export.py (and packets.to_markdown): keep them in step.
 
-import { clean, parse, plain } from "./markdown_blocks.js?v=6f4fac7a92";
+import { clean, parse, plain } from "./markdown_blocks.js?v=8b2ec44a96";
 
 export const FORMATS = { docx: "Word", pdf: "PDF", pptx: "PowerPoint", md: "Markdown" };
 
@@ -19,7 +19,7 @@ export async function build(packet, sectionId, format, config) {
   if (!isObject(sections) || !Array.isArray(order) || !isObject(options)) {
     throw new ExportError("This packet's data is damaged, so it can't be exported.");
   }
-  order = order.filter((sid) => typeof sid === "string" && isObject(sections[sid]));
+  order = order.filter((sid) => typeof sid === "string" && Object.hasOwn(sections, sid) && isObject(sections[sid]));
   if (sectionId) {
     if (!order.includes(sectionId)) throw new ExportError("That section hasn't been written yet.");
     order = [sectionId];
@@ -49,14 +49,14 @@ export async function build(packet, sectionId, format, config) {
     style,
   };
   if (format === "docx") {
-    const { toDocx } = await import("./export_docx.js?v=6f4fac7a92");
+    const { toDocx } = await import("./export_docx.js?v=8b2ec44a96");
     return { blob: await toDocx(doc), filename };
   }
   if (format === "pdf") {
-    const { toPdf } = await import("./export_pdf.js?v=6f4fac7a92");
+    const { toPdf } = await import("./export_pdf.js?v=8b2ec44a96");
     return { blob: await toPdf(doc), filename };
   }
-  const { toPptx } = await import("./export_pptx.js?v=6f4fac7a92");
+  const { toPptx } = await import("./export_pptx.js?v=8b2ec44a96");
   return { blob: await toPptx(doc), filename };
 }
 
