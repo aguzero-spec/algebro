@@ -1,0 +1,1984 @@
+{
+ "title": "Texas Essential Knowledge and Skills (TEKS): Mathematics, Middle School",
+ "source": "https://tea.texas.gov/laws-and-rules/sboe-rules-tac/sboe-tac-currently-effect/ch111b.pdf",
+ "source_version": "July 2025 Update",
+ "retrieved": "2026-10-14",
+ "courses": [
+  {
+   "id": "math6",
+   "name": "Grade 6 Mathematics",
+   "subject": "Mathematics",
+   "grade": "6",
+   "section": "19 TAC §111.26",
+   "note": "TEKS adopted 2012",
+   "strands": [
+    {
+     "title": "Mathematical process standards",
+     "statement": "The student uses mathematical processes to acquire and demonstrate mathematical understanding. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6.1A",
+       "text": "apply mathematics to problems arising in everyday life, society, and the workplace"
+      },
+      {
+       "code": "6.1B",
+       "text": "use a problem-solving model that incorporates analyzing given information, formulating a plan or strategy, determining a solution, justifying the solution, and evaluating the problem-solving process and the reasonableness of the solution"
+      },
+      {
+       "code": "6.1C",
+       "text": "select tools, including real objects, manipulatives, paper and pencil, and technology as appropriate, and techniques, including mental math, estimation, and number sense as appropriate, to solve problems"
+      },
+      {
+       "code": "6.1D",
+       "text": "communicate mathematical ideas, reasoning, and their implications using multiple representations, including symbols, diagrams, graphs, and language as appropriate"
+      },
+      {
+       "code": "6.1E",
+       "text": "create and use representations to organize, record, and communicate mathematical ideas"
+      },
+      {
+       "code": "6.1F",
+       "text": "analyze mathematical relationships to connect and communicate mathematical ideas"
+      },
+      {
+       "code": "6.1G",
+       "text": "display, explain, and justify mathematical ideas and arguments using precise mathematical language in written or oral communication"
+      }
+     ]
+    },
+    {
+     "title": "Number and operations",
+     "statement": "The student applies mathematical process standards to represent and use rational numbers in a variety of forms. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6.2A",
+       "text": "classify whole numbers, integers, and rational numbers using a visual representation such as a Venn diagram to describe relationships between sets of numbers"
+      },
+      {
+       "code": "6.2B",
+       "text": "identify a number, its opposite, and its absolute value"
+      },
+      {
+       "code": "6.2C",
+       "text": "locate, compare, and order integers and rational numbers using a number line"
+      },
+      {
+       "code": "6.2D",
+       "text": "order a set of rational numbers arising from mathematical and real-world contexts"
+      },
+      {
+       "code": "6.2E",
+       "text": "extend representations for division to include fraction notation such as a/b represents the same number as a ÷ b where b ≠ 0"
+      }
+     ]
+    },
+    {
+     "title": "Number and operations",
+     "statement": "The student applies mathematical process standards to represent addition, subtraction, multiplication, and division while solving problems and justifying solutions. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6.3A",
+       "text": "recognize that dividing by a rational number and multiplying by its reciprocal result in equivalent values"
+      },
+      {
+       "code": "6.3B",
+       "text": "determine, with and without computation, whether a quantity is increased or decreased when multiplied by a fraction, including values greater than or less than one"
+      },
+      {
+       "code": "6.3C",
+       "text": "represent integer operations with concrete models and connect the actions with the models to standardized algorithms"
+      },
+      {
+       "code": "6.3D",
+       "text": "add, subtract, multiply, and divide integers fluently"
+      },
+      {
+       "code": "6.3E",
+       "text": "multiply and divide positive rational numbers fluently"
+      }
+     ]
+    },
+    {
+     "title": "Proportionality",
+     "statement": "The student applies mathematical process standards to develop an understanding of proportional relationships in problem situations. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6.4A",
+       "text": "compare two rules verbally, numerically, graphically, and symbolically in the form of y = ax or y = x + a in order to differentiate between additive and multiplicative relationships"
+      },
+      {
+       "code": "6.4B",
+       "text": "apply qualitative and quantitative reasoning to solve prediction and comparison of real-world problems involving ratios and rates"
+      },
+      {
+       "code": "6.4C",
+       "text": "give examples of ratios as multiplicative comparisons of two quantities describing the same attribute"
+      },
+      {
+       "code": "6.4D",
+       "text": "give examples of rates as the comparison by division of two quantities having different attributes, including rates as quotients"
+      },
+      {
+       "code": "6.4E",
+       "text": "represent ratios and percents with concrete models, fractions, and decimals"
+      },
+      {
+       "code": "6.4F",
+       "text": "represent benchmark fractions and percents such as 1%, 10%, 25%, 33 1/3%, and multiples of these values using 10 by 10 grids, strip diagrams, number lines, and numbers"
+      },
+      {
+       "code": "6.4G",
+       "text": "generate equivalent forms of fractions, decimals, and percents using real-world problems, including problems that involve money"
+      },
+      {
+       "code": "6.4H",
+       "text": "convert units within a measurement system, including the use of proportions and unit rates"
+      }
+     ]
+    },
+    {
+     "title": "Proportionality",
+     "statement": "The student applies mathematical process standards to solve problems involving proportional relationships. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6.5A",
+       "text": "represent mathematical and real-world problems involving ratios and rates using scale factors, tables, graphs, and proportions"
+      },
+      {
+       "code": "6.5B",
+       "text": "solve real-world problems to find the whole given a part and the percent, to find the part given the whole and the percent, and to find the percent given the part and the whole, including the use of concrete and pictorial models"
+      },
+      {
+       "code": "6.5C",
+       "text": "use equivalent fractions, decimals, and percents to show equal parts of the same whole"
+      }
+     ]
+    },
+    {
+     "title": "Expressions, equations, and relationships",
+     "statement": "The student applies mathematical process standards to use multiple representations to describe algebraic relationships. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6.6A",
+       "text": "identify independent and dependent quantities from tables and graphs"
+      },
+      {
+       "code": "6.6B",
+       "text": "write an equation that represents the relationship between independent and dependent quantities from a table"
+      },
+      {
+       "code": "6.6C",
+       "text": "represent a given situation using verbal descriptions, tables, graphs, and equations in the form y = kx or y = x + b"
+      }
+     ]
+    },
+    {
+     "title": "Expressions, equations, and relationships",
+     "statement": "The student applies mathematical process standards to develop concepts of expressions and equations. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6.7A",
+       "text": "generate equivalent numerical expressions using order of operations, including whole number exponents and prime factorization"
+      },
+      {
+       "code": "6.7B",
+       "text": "distinguish between expressions and equations verbally, numerically, and algebraically"
+      },
+      {
+       "code": "6.7C",
+       "text": "determine if two expressions are equivalent using concrete models, pictorial models, and algebraic representations"
+      },
+      {
+       "code": "6.7D",
+       "text": "generate equivalent expressions using the properties of operations: inverse, identity, commutative, associative, and distributive properties"
+      }
+     ]
+    },
+    {
+     "title": "Expressions, equations, and relationships",
+     "statement": "The student applies mathematical process standards to use geometry to represent relationships and solve problems. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6.8A",
+       "text": "extend previous knowledge of triangles and their properties to include the sum of angles of a triangle, the relationship between the lengths of sides and measures of angles in a triangle, and determining when three lengths form a triangle"
+      },
+      {
+       "code": "6.8B",
+       "text": "model area formulas for parallelograms, trapezoids, and triangles by decomposing and rearranging parts of these shapes"
+      },
+      {
+       "code": "6.8C",
+       "text": "write equations that represent problems related to the area of rectangles, parallelograms, trapezoids, and triangles and volume of right rectangular prisms where dimensions are positive rational numbers"
+      },
+      {
+       "code": "6.8D",
+       "text": "determine solutions for problems involving the area of rectangles, parallelograms, trapezoids, and triangles and volume of right rectangular prisms where dimensions are positive rational numbers"
+      }
+     ]
+    },
+    {
+     "title": "Expressions, equations, and relationships",
+     "statement": "The student applies mathematical process standards to use equations and inequalities to represent situations. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6.9A",
+       "text": "write one-variable, one-step equations and inequalities to represent constraints or conditions within problems"
+      },
+      {
+       "code": "6.9B",
+       "text": "represent solutions for one-variable, one-step equations and inequalities on number lines"
+      },
+      {
+       "code": "6.9C",
+       "text": "write corresponding real-world problems given one-variable, one-step equations or inequalities"
+      }
+     ]
+    },
+    {
+     "title": "Expressions, equations, and relationships",
+     "statement": "The student applies mathematical process standards to use equations and inequalities to solve problems. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6.10A",
+       "text": "model and solve one-variable, one-step equations and inequalities that represent problems, including geometric concepts"
+      },
+      {
+       "code": "6.10B",
+       "text": "determine if the given value(s) make(s) one-variable, one-step equations or inequalities true"
+      }
+     ]
+    },
+    {
+     "title": "Measurement and data",
+     "statement": "The student applies mathematical process standards to use coordinate geometry to identify locations on a plane.",
+     "expectations": [
+      {
+       "code": "6.11A",
+       "text": "graph points in all four quadrants using ordered pairs of rational numbers"
+      }
+     ]
+    },
+    {
+     "title": "Measurement and data",
+     "statement": "The student applies mathematical process standards to use numerical or graphical representations to analyze problems. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6.12A",
+       "text": "represent numeric data graphically, including dot plots, stem-and-leaf plots, histograms, and box plots"
+      },
+      {
+       "code": "6.12B",
+       "text": "use the graphical representation of numeric data to describe the center, spread, and shape of the data distribution"
+      },
+      {
+       "code": "6.12C",
+       "text": "summarize numeric data with numerical summaries, including the mean and median (measures of center) and the range and interquartile range (IQR) (measures of spread), and use these summaries to describe the center, spread, and shape of the data distribution"
+      },
+      {
+       "code": "6.12D",
+       "text": "summarize categorical data with numerical and graphical summaries, including the mode, the percent of values in each category (relative frequency table), and the percent bar graph, and use these summaries to describe the data distribution"
+      }
+     ]
+    },
+    {
+     "title": "Measurement and data",
+     "statement": "The student applies mathematical process standards to use numerical or graphical representations to solve problems. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6.13A",
+       "text": "interpret numeric data summarized in dot plots, stem-and-leaf plots, histograms, and box plots"
+      },
+      {
+       "code": "6.13B",
+       "text": "distinguish between situations that yield data with and without variability"
+      }
+     ]
+    },
+    {
+     "title": "Personal financial literacy",
+     "statement": "The student applies mathematical process standards to develop an economic way of thinking and problem solving useful in one's life as a knowledgeable consumer and investor. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6.14A",
+       "text": "compare the features and costs of a checking account and a debit card offered by different local financial institutions"
+      },
+      {
+       "code": "6.14B",
+       "text": "distinguish between debit cards and credit cards"
+      },
+      {
+       "code": "6.14C",
+       "text": "balance a check register that includes deposits, withdrawals, and transfers"
+      },
+      {
+       "code": "6.14D",
+       "text": "explain why it is important to establish a positive credit history"
+      },
+      {
+       "code": "6.14E",
+       "text": "describe the information in a credit report and how long it is retained"
+      },
+      {
+       "code": "6.14F",
+       "text": "describe the value of credit reports to borrowers and to lenders"
+      },
+      {
+       "code": "6.14G",
+       "text": "explain various methods to pay for college, including through savings, grants, scholarships, student loans, and work-study"
+      },
+      {
+       "code": "6.14H",
+       "text": "compare the annual salary of several occupations requiring various levels of post-secondary education or vocational training and calculate the effects of the different annual salaries on lifetime income"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "math7",
+   "name": "Grade 7 Mathematics",
+   "subject": "Mathematics",
+   "grade": "7",
+   "section": "19 TAC §111.27",
+   "note": "TEKS adopted 2012",
+   "strands": [
+    {
+     "title": "Mathematical process standards",
+     "statement": "The student uses mathematical processes to acquire and demonstrate mathematical understanding. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7.1A",
+       "text": "apply mathematics to problems arising in everyday life, society, and the workplace"
+      },
+      {
+       "code": "7.1B",
+       "text": "use a problem-solving model that incorporates analyzing given information, formulating a plan or strategy, determining a solution, justifying the solution, and evaluating the problem-solving process and the reasonableness of the solution"
+      },
+      {
+       "code": "7.1C",
+       "text": "select tools, including real objects, manipulatives, paper and pencil, and technology as appropriate, and techniques, including mental math, estimation, and number sense as appropriate, to solve problems"
+      },
+      {
+       "code": "7.1D",
+       "text": "communicate mathematical ideas, reasoning, and their implications using multiple representations, including symbols, diagrams, graphs, and language as appropriate"
+      },
+      {
+       "code": "7.1E",
+       "text": "create and use representations to organize, record, and communicate mathematical ideas"
+      },
+      {
+       "code": "7.1F",
+       "text": "analyze mathematical relationships to connect and communicate mathematical ideas"
+      },
+      {
+       "code": "7.1G",
+       "text": "display, explain, and justify mathematical ideas and arguments using precise mathematical language in written or oral communication"
+      }
+     ]
+    },
+    {
+     "title": "Number and operations",
+     "statement": "The student applies mathematical process standards to represent and use rational numbers in a variety of forms.",
+     "expectations": [
+      {
+       "code": "7.2A",
+       "text": "extend previous knowledge of sets and subsets using a visual representation to describe relationships between sets of rational numbers"
+      }
+     ]
+    },
+    {
+     "title": "Number and operations",
+     "statement": "The student applies mathematical process standards to add, subtract, multiply, and divide while solving problems and justifying solutions. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7.3A",
+       "text": "add, subtract, multiply, and divide rational numbers fluently"
+      },
+      {
+       "code": "7.3B",
+       "text": "apply and extend previous understandings of operations to solve problems using addition, subtraction, multiplication, and division of rational numbers"
+      }
+     ]
+    },
+    {
+     "title": "Proportionality",
+     "statement": "The student applies mathematical process standards to represent and solve problems involving proportional relationships. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7.4A",
+       "text": "represent constant rates of change in mathematical and real-world problems given pictorial, tabular, verbal, numeric, graphical, and algebraic representations, including d = rt"
+      },
+      {
+       "code": "7.4B",
+       "text": "calculate unit rates from rates in mathematical and real-world problems"
+      },
+      {
+       "code": "7.4C",
+       "text": "determine the constant of proportionality (k = y/x) within mathematical and real-world problems"
+      },
+      {
+       "code": "7.4D",
+       "text": "solve problems involving ratios, rates, and percents, including multi-step problems involving percent increase and percent decrease, and financial literacy problems"
+      },
+      {
+       "code": "7.4E",
+       "text": "convert between measurement systems, including the use of proportions and the use of unit rates"
+      }
+     ]
+    },
+    {
+     "title": "Proportionality",
+     "statement": "The student applies mathematical process standards to use geometry to describe or solve problems involving proportional relationships. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7.5A",
+       "text": "generalize the critical attributes of similarity, including ratios within and between similar shapes"
+      },
+      {
+       "code": "7.5B",
+       "text": "describe π as the ratio of the circumference of a circle to its diameter"
+      },
+      {
+       "code": "7.5C",
+       "text": "solve mathematical and real-world problems involving similar shape and scale drawings"
+      }
+     ]
+    },
+    {
+     "title": "Proportionality",
+     "statement": "The student applies mathematical process standards to use probability and statistics to describe or solve problems involving proportional relationships. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7.6A",
+       "text": "represent sample spaces for simple and compound events using lists and tree diagrams"
+      },
+      {
+       "code": "7.6B",
+       "text": "select and use different simulations to represent simple and compound events with and without technology"
+      },
+      {
+       "code": "7.6C",
+       "text": "make predictions and determine solutions using experimental data for simple and compound events"
+      },
+      {
+       "code": "7.6D",
+       "text": "make predictions and determine solutions using theoretical probability for simple and compound events"
+      },
+      {
+       "code": "7.6E",
+       "text": "find the probabilities of a simple event and its complement and describe the relationship between the two"
+      },
+      {
+       "code": "7.6F",
+       "text": "use data from a random sample to make inferences about a population"
+      },
+      {
+       "code": "7.6G",
+       "text": "solve problems using data represented in bar graphs, dot plots, and circle graphs, including part-to-whole and part-to-part comparisons and equivalents"
+      },
+      {
+       "code": "7.6H",
+       "text": "solve problems using qualitative and quantitative predictions and comparisons from simple experiments"
+      },
+      {
+       "code": "7.6I",
+       "text": "determine experimental and theoretical probabilities related to simple and compound events using data and sample spaces"
+      }
+     ]
+    },
+    {
+     "title": "Expressions, equations, and relationships",
+     "statement": "The student applies mathematical process standards to represent linear relationships using multiple representations.",
+     "expectations": [
+      {
+       "code": "7.7A",
+       "text": "represent linear relationships using verbal descriptions, tables, graphs, and equations that simplify to the form y = mx + b"
+      }
+     ]
+    },
+    {
+     "title": "Expressions, equations, and relationships",
+     "statement": "The student applies mathematical process standards to develop geometric relationships with volume. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7.8A",
+       "text": "model the relationship between the volume of a rectangular prism and a rectangular pyramid having both congruent bases and heights and connect that relationship to the formulas"
+      },
+      {
+       "code": "7.8B",
+       "text": "explain verbally and symbolically the relationship between the volume of a triangular prism and a triangular pyramid having both congruent bases and heights and connect that relationship to the formulas"
+      },
+      {
+       "code": "7.8C",
+       "text": "use models to determine the approximate formulas for the circumference and area of a circle and connect the models to the actual formulas"
+      }
+     ]
+    },
+    {
+     "title": "Expressions, equations, and relationships",
+     "statement": "The student applies mathematical process standards to solve geometric problems. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7.9A",
+       "text": "solve problems involving the volume of rectangular prisms, triangular prisms, rectangular pyramids, and triangular pyramids"
+      },
+      {
+       "code": "7.9B",
+       "text": "determine the circumference and area of circles"
+      },
+      {
+       "code": "7.9C",
+       "text": "determine the area of composite figures containing combinations of rectangles, squares, parallelograms, trapezoids, triangles, semicircles, and quarter circles"
+      },
+      {
+       "code": "7.9D",
+       "text": "solve problems involving the lateral and total surface area of a rectangular prism, rectangular pyramid, triangular prism, and triangular pyramid by determining the area of the shape's net"
+      }
+     ]
+    },
+    {
+     "title": "Expressions, equations, and relationships",
+     "statement": "The student applies mathematical process standards to use one-variable equations and inequalities to represent situations. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7.10A",
+       "text": "write one-variable, two-step equations and inequalities to represent constraints or conditions within problems"
+      },
+      {
+       "code": "7.10B",
+       "text": "represent solutions for one-variable, two-step equations and inequalities on number lines"
+      },
+      {
+       "code": "7.10C",
+       "text": "write a corresponding real-world problem given a one-variable, two-step equation or inequality"
+      }
+     ]
+    },
+    {
+     "title": "Expressions, equations, and relationships",
+     "statement": "The student applies mathematical process standards to solve one-variable equations and inequalities. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7.11A",
+       "text": "model and solve one-variable, two-step equations and inequalities"
+      },
+      {
+       "code": "7.11B",
+       "text": "determine if the given value(s) make(s) one-variable, two-step equations and inequalities true"
+      },
+      {
+       "code": "7.11C",
+       "text": "write and solve equations using geometry concepts, including the sum of the angles in a triangle, and angle relationships"
+      }
+     ]
+    },
+    {
+     "title": "Measurement and data",
+     "statement": "The student applies mathematical process standards to use statistical representations to analyze data. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7.12A",
+       "text": "compare two groups of numeric data using comparative dot plots or box plots by comparing their shapes, centers, and spreads"
+      },
+      {
+       "code": "7.12B",
+       "text": "use data from a random sample to make inferences about a population"
+      },
+      {
+       "code": "7.12C",
+       "text": "compare two populations based on data in random samples from these populations, including informal comparative inferences about differences between the two populations"
+      }
+     ]
+    },
+    {
+     "title": "Personal financial literacy",
+     "statement": "The student applies mathematical process standards to develop an economic way of thinking and problem solving useful in one's life as a knowledgeable consumer and investor. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7.13A",
+       "text": "calculate the sales tax for a given purchase and calculate income tax for earned wages"
+      },
+      {
+       "code": "7.13B",
+       "text": "identify the components of a personal budget, including income; planned savings for college, retirement, and emergencies; taxes; and fixed and variable expenses, and calculate what percentage each category comprises of the total budget"
+      },
+      {
+       "code": "7.13C",
+       "text": "create and organize a financial assets and liabilities record and construct a net worth statement"
+      },
+      {
+       "code": "7.13D",
+       "text": "use a family budget estimator to determine the minimum household budget and average hourly wage needed for a family to meet its basic needs in the student's city or another large city nearby"
+      },
+      {
+       "code": "7.13E",
+       "text": "calculate and compare simple interest and compound interest earnings"
+      },
+      {
+       "code": "7.13F",
+       "text": "analyze and compare monetary incentives, including sales, rebates, and coupons"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "math8",
+   "name": "Grade 8 Mathematics",
+   "subject": "Mathematics",
+   "grade": "8",
+   "section": "19 TAC §111.28",
+   "note": "TEKS adopted 2012",
+   "strands": [
+    {
+     "title": "Mathematical process standards",
+     "statement": "The student uses mathematical processes to acquire and demonstrate mathematical understanding. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8.1A",
+       "text": "apply mathematics to problems arising in everyday life, society, and the workplace"
+      },
+      {
+       "code": "8.1B",
+       "text": "use a problem-solving model that incorporates analyzing given information, formulating a plan or strategy, determining a solution, justifying the solution, and evaluating the problem-solving process and the reasonableness of the solution"
+      },
+      {
+       "code": "8.1C",
+       "text": "select tools, including real objects, manipulatives, paper and pencil, and technology as appropriate, and techniques, including mental math, estimation, and number sense as appropriate, to solve problems"
+      },
+      {
+       "code": "8.1D",
+       "text": "communicate mathematical ideas, reasoning, and their implications using multiple representations, including symbols, diagrams, graphs, and language as appropriate"
+      },
+      {
+       "code": "8.1E",
+       "text": "create and use representations to organize, record, and communicate mathematical ideas"
+      },
+      {
+       "code": "8.1F",
+       "text": "analyze mathematical relationships to connect and communicate mathematical ideas"
+      },
+      {
+       "code": "8.1G",
+       "text": "display, explain, and justify mathematical ideas and arguments using precise mathematical language in written or oral communication"
+      }
+     ]
+    },
+    {
+     "title": "Number and operations",
+     "statement": "The student applies mathematical process standards to represent and use real numbers in a variety of forms. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8.2A",
+       "text": "extend previous knowledge of sets and subsets using a visual representation to describe relationships between sets of real numbers"
+      },
+      {
+       "code": "8.2B",
+       "text": "approximate the value of an irrational number, including π and square roots of numbers less than 225, and locate that rational number approximation on a number line"
+      },
+      {
+       "code": "8.2C",
+       "text": "convert between standard decimal notation and scientific notation"
+      },
+      {
+       "code": "8.2D",
+       "text": "order a set of real numbers arising from mathematical and real-world contexts"
+      }
+     ]
+    },
+    {
+     "title": "Proportionality",
+     "statement": "The student applies mathematical process standards to use proportional relationships to describe dilations. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8.3A",
+       "text": "generalize that the ratio of corresponding sides of similar shapes are proportional, including a shape and its dilation"
+      },
+      {
+       "code": "8.3B",
+       "text": "compare and contrast the attributes of a shape and its dilation(s) on a coordinate plane"
+      },
+      {
+       "code": "8.3C",
+       "text": "use an algebraic representation to explain the effect of a given positive rational scale factor applied to two-dimensional figures on a coordinate plane with the origin as the center of dilation"
+      }
+     ]
+    },
+    {
+     "title": "Proportionality",
+     "statement": "The student applies mathematical process standards to explain proportional and non-proportional relationships involving slope. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8.4A",
+       "text": "use similar right triangles to develop an understanding that slope, m, given as the rate comparing the change in y-values to the change in x-values, (y2 - y1)/ (x2 - x1), is the same for any two points (x1, y1) and (x2, y2) on the same line"
+      },
+      {
+       "code": "8.4B",
+       "text": "graph proportional relationships, interpreting the unit rate as the slope of the line that models the relationship"
+      },
+      {
+       "code": "8.4C",
+       "text": "use data from a table or graph to determine the rate of change or slope and y-intercept in mathematical and real-world problems"
+      }
+     ]
+    },
+    {
+     "title": "Proportionality",
+     "statement": "The student applies mathematical process standards to use proportional and non-proportional relationships to develop foundational concepts of functions. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8.5A",
+       "text": "represent linear proportional situations with tables, graphs, and equations in the form of y = kx"
+      },
+      {
+       "code": "8.5B",
+       "text": "represent linear non-proportional situations with tables, graphs, and equations in the form of y = mx + b, where b ≠ 0"
+      },
+      {
+       "code": "8.5C",
+       "text": "contrast bivariate sets of data that suggest a linear relationship with bivariate sets of data that do not suggest a linear relationship from a graphical representation"
+      },
+      {
+       "code": "8.5D",
+       "text": "use a trend line that approximates the linear relationship between bivariate sets of data to make predictions"
+      },
+      {
+       "code": "8.5E",
+       "text": "solve problems involving direct variation"
+      },
+      {
+       "code": "8.5F",
+       "text": "distinguish between proportional and non-proportional situations using tables, graphs, and equations in the form y = kx or y = mx + b, where b ≠ 0"
+      },
+      {
+       "code": "8.5G",
+       "text": "identify functions using sets of ordered pairs, tables, mappings, and graphs"
+      },
+      {
+       "code": "8.5H",
+       "text": "identify examples of proportional and non-proportional functions that arise from mathematical and real-world problems"
+      },
+      {
+       "code": "8.5I",
+       "text": "write an equation in the form y = mx + b to model a linear relationship between two quantities using verbal, numerical, tabular, and graphical representations"
+      }
+     ]
+    },
+    {
+     "title": "Expressions, equations, and relationships",
+     "statement": "The student applies mathematical process standards to develop mathematical relationships and make connections to geometric formulas. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8.6A",
+       "text": "describe the volume formula V = Bh of a cylinder in terms of its base area and its height"
+      },
+      {
+       "code": "8.6B",
+       "text": "model the relationship between the volume of a cylinder and a cone having both congruent bases and heights and connect that relationship to the formulas"
+      },
+      {
+       "code": "8.6C",
+       "text": "use models and diagrams to explain the Pythagorean theorem"
+      }
+     ]
+    },
+    {
+     "title": "Expressions, equations, and relationships",
+     "statement": "The student applies mathematical process standards to use geometry to solve problems. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8.7A",
+       "text": "solve problems involving the volume of cylinders, cones, and spheres"
+      },
+      {
+       "code": "8.7B",
+       "text": "use previous knowledge of surface area to make connections to the formulas for lateral and total surface area and determine solutions for problems involving rectangular prisms, triangular prisms, and cylinders"
+      },
+      {
+       "code": "8.7C",
+       "text": "use the Pythagorean Theorem and its converse to solve problems"
+      },
+      {
+       "code": "8.7D",
+       "text": "determine the distance between two points on a coordinate plane using the Pythagorean Theorem"
+      }
+     ]
+    },
+    {
+     "title": "Expressions, equations, and relationships",
+     "statement": "The student applies mathematical process standards to use one-variable equations or inequalities in problem situations. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8.8A",
+       "text": "write one-variable equations or inequalities with variables on both sides that represent problems using rational number coefficients and constants"
+      },
+      {
+       "code": "8.8B",
+       "text": "write a corresponding real-world problem when given a one-variable equation or inequality with variables on both sides of the equal sign using rational number coefficients and constants"
+      },
+      {
+       "code": "8.8C",
+       "text": "model and solve one-variable equations with variables on both sides of the equal sign that represent mathematical and real-world problems using rational number coefficients and constants"
+      },
+      {
+       "code": "8.8D",
+       "text": "use informal arguments to establish facts about the angle sum and exterior angle of triangles, the angles created when parallel lines are cut by a transversal, and the angle- angle criterion for similarity of triangles"
+      }
+     ]
+    },
+    {
+     "title": "Expressions, equations, and relationships",
+     "statement": "The student applies mathematical process standards to use multiple representations to develop foundational concepts of simultaneous linear equations.",
+     "expectations": [
+      {
+       "code": "8.9A",
+       "text": "identify and verify the values of x and y that simultaneously satisfy two linear equations in the form y = mx + b from the intersections of the graphed equations"
+      }
+     ]
+    },
+    {
+     "title": "Two-dimensional shapes",
+     "statement": "The student applies mathematical process standards to develop transformational geometry concepts. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8.10A",
+       "text": "generalize the properties of orientation and congruence of rotations, reflections, translations, and dilations of two-dimensional shapes on a coordinate plane"
+      },
+      {
+       "code": "8.10B",
+       "text": "differentiate between transformations that preserve congruence and those that do not"
+      },
+      {
+       "code": "8.10C",
+       "text": "explain the effect of translations, reflections over the x- or y-axis, and rotations limited to 90°, 180°, 270°, and 360° as applied to two-dimensional shapes on a coordinate plane using an algebraic representation"
+      },
+      {
+       "code": "8.10D",
+       "text": "model the effect on linear and area measurements of dilated two-dimensional shapes"
+      }
+     ]
+    },
+    {
+     "title": "Measurement and data",
+     "statement": "The student applies mathematical process standards to use statistical procedures to describe data. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8.11A",
+       "text": "construct a scatterplot and describe the observed data to address questions of association such as linear, non-linear, and no association between bivariate data"
+      },
+      {
+       "code": "8.11B",
+       "text": "determine the mean absolute deviation and use this quantity as a measure of the average distance data are from the mean using a data set of no more than 10 data points"
+      },
+      {
+       "code": "8.11C",
+       "text": "simulate generating random samples of the same size from a population with known characteristics to develop the notion of a random sample being representative of the population from which it was selected"
+      }
+     ]
+    },
+    {
+     "title": "Personal financial literacy",
+     "statement": "The student applies mathematical process standards to develop an economic way of thinking and problem solving useful in one's life as a knowledgeable consumer and investor. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8.12A",
+       "text": "solve real-world problems comparing how interest rate and loan length affect the cost of credit"
+      },
+      {
+       "code": "8.12B",
+       "text": "calculate the total cost of repaying a loan, including credit cards and easy access loans, under various rates of interest and over different periods using an online calculator"
+      },
+      {
+       "code": "8.12C",
+       "text": "explain how small amounts of money invested regularly, including money saved for college and retirement, grow over time"
+      },
+      {
+       "code": "8.12D",
+       "text": "calculate and compare simple interest and compound interest earnings"
+      },
+      {
+       "code": "8.12E",
+       "text": "identify and explain the advantages and disadvantages of different payment methods"
+      },
+      {
+       "code": "8.12F",
+       "text": "analyze situations to determine if they represent financially responsible decisions and identify the benefits of financial responsibility and the costs of financial irresponsibility"
+      },
+      {
+       "code": "8.12G",
+       "text": "estimate the cost of a two-year and four-year college education, including family contribution, and devise a periodic savings plan for accumulating the money needed to contribute to the total cost of attendance for at least the first year of college"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "math6adv",
+   "name": "Grade 6 Advanced Mathematics",
+   "subject": "Mathematics",
+   "grade": "6",
+   "section": "19 TAC §111.29",
+   "note": "Adopted 2025; districts may use from 2025-26",
+   "strands": [
+    {
+     "title": "Mathematical process standards",
+     "statement": "The student uses mathematical processes to acquire and demonstrate mathematical understanding. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6 Adv.1A",
+       "text": "apply mathematics to problems arising in everyday life, society, and the workplace"
+      },
+      {
+       "code": "6 Adv.1B",
+       "text": "use a problem-solving model that incorporates analyzing given information, formulating a plan or strategy, determining a solution, justifying the solution, and evaluating the problem-solving process and the reasonableness of the solution"
+      },
+      {
+       "code": "6 Adv.1C",
+       "text": "select tools, including real objects, manipulatives, paper and pencil, and technology as appropriate, and techniques, including mental math, estimation, and number sense as appropriate, to solve problems"
+      },
+      {
+       "code": "6 Adv.1D",
+       "text": "communicate mathematical ideas, reasoning, and their implications using multiple representations, including symbols, diagrams, graphs, and language as appropriate"
+      },
+      {
+       "code": "6 Adv.1E",
+       "text": "create and use representations to organize, record, and communicate mathematical ideas"
+      },
+      {
+       "code": "6 Adv.1F",
+       "text": "analyze mathematical relationships to connect and communicate mathematical ideas"
+      },
+      {
+       "code": "6 Adv.1G",
+       "text": "display, explain, and justify mathematical ideas and arguments using precise mathematical language in written or oral communication"
+      }
+     ]
+    },
+    {
+     "title": "Numeracy--foundations of rational numbers",
+     "statement": "The student applies mathematical process standards to represent and use rational numbers in a variety of forms. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6 Adv.2A",
+       "text": "classify sets and subsets using a visual representation such as a Venn diagram or a hierarchy to describe relationships between sets of rational numbers"
+      },
+      {
+       "code": "6 Adv.2B",
+       "text": "identify a number, its opposite, and its absolute value"
+      },
+      {
+       "code": "6 Adv.2C",
+       "text": "represent benchmark fractions and percents such as 1%, 10%, 25%, 33 1/3%, and multiples of these values using 10 by 10 grids, strip diagrams, number lines, and numbers as proportional relationships"
+      },
+      {
+       "code": "6 Adv.2D",
+       "text": "generate equivalent forms of fractions, decimals, and percents using real-world problems as proportional relationships, including problems that involve money"
+      },
+      {
+       "code": "6 Adv.2E",
+       "text": "use equivalent fractions, decimals, and percents to show equal parts of the same whole as proportional relationships"
+      },
+      {
+       "code": "6 Adv.2F",
+       "text": "locate, compare, and order integers and rational numbers using a number line"
+      },
+      {
+       "code": "6 Adv.2G",
+       "text": "order a set of rational numbers arising from mathematical and real-world contexts"
+      },
+      {
+       "code": "6 Adv.2H",
+       "text": "use coordinate geometry to identify locations on a plane, including graphing points in all four quadrants using ordered pairs of rational numbers"
+      }
+     ]
+    },
+    {
+     "title": "Numeracy--operations with rational numbers",
+     "statement": "The student applies mathematical process standards to represent addition, subtraction, multiplication, and division while solving problems and justifying solutions. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6 Adv.3A",
+       "text": "recognize that dividing by a rational number and multiplying by its reciprocal result in equivalent values"
+      },
+      {
+       "code": "6 Adv.3B",
+       "text": "determine, with and without computation, whether a quantity is increased or decreased when multiplied by a fraction, including values greater than or less than one"
+      },
+      {
+       "code": "6 Adv.3C",
+       "text": "extend representations for division to include fraction notation such as a /b represents the same number as a ÷ b where b ≠ 0"
+      },
+      {
+       "code": "6 Adv.3D",
+       "text": "represent integer operations with concrete models and connect the actions with the models to standardized algorithms"
+      },
+      {
+       "code": "6 Adv.3E",
+       "text": "add, subtract, multiply, and divide integers fluently"
+      },
+      {
+       "code": "6 Adv.3F",
+       "text": "add, subtract, multiply, and divide rational numbers"
+      },
+      {
+       "code": "6 Adv.3G",
+       "text": "generate equivalent numerical expressions using order of operations, including whole number exponents and prime factorization"
+      },
+      {
+       "code": "6 Adv.3H",
+       "text": "balance a check register that includes deposits, withdrawals, and transfers"
+      },
+      {
+       "code": "6 Adv.3I",
+       "text": "create and organize a financial assets and liabilities record and construct a net worth statement"
+      }
+     ]
+    },
+    {
+     "title": "Numeracy--applications of percents",
+     "statement": "The student applies mathematical process standards to solve problems involving percents as proportional relationships. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6 Adv.4A",
+       "text": "solve real-world problems to find the whole given a part and the percent, to find the part given the whole and the percent, and to find the percent given the part and the whole, including the use of concrete and pictorial models"
+      },
+      {
+       "code": "6 Adv.4B",
+       "text": "calculate the sales tax for a given purchase and calculate income tax for earned wages"
+      }
+     ]
+    },
+    {
+     "title": "Proportionality--foundations of ratios and rates",
+     "statement": "The student applies mathematical process standards to develop an understanding of proportional relationships in problem situations. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6 Adv.5A",
+       "text": "give examples of ratios as multiplicative comparisons of two quantities describing the same attribute"
+      },
+      {
+       "code": "6 Adv.5B",
+       "text": "give examples of rates as the comparison by division of two quantities having different attributes, including rates as quotients"
+      },
+      {
+       "code": "6 Adv.5C",
+       "text": "represent ratios and percents with concrete models, fractions, and decimals"
+      },
+      {
+       "code": "6 Adv.5D",
+       "text": "represent mathematical and real-world problems involving ratios and rates using scale factors, tables, graphs, and proportions"
+      }
+     ]
+    },
+    {
+     "title": "Proportionality--applications of ratios and rates",
+     "statement": "The student applies mathematical process standards to solve problems involving proportional relationships. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6 Adv.6A",
+       "text": "apply qualitative and quantitative reasoning to solve prediction and comparison of real-world problems involving ratios and rates"
+      },
+      {
+       "code": "6 Adv.6B",
+       "text": "calculate unit rates from rates in mathematical and real-world problems"
+      },
+      {
+       "code": "6 Adv.6C",
+       "text": "convert within and between measurement systems, including the use of proportions and the use of unit rates"
+      }
+     ]
+    },
+    {
+     "title": "One-variable expressions, equations, and relationships--foundations of one-variable relationships",
+     "statement": "The student applies mathematical process standards to develop concepts of expressions and equations. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6 Adv.7A",
+       "text": "distinguish between expressions and equations verbally, numerically, and algebraically"
+      },
+      {
+       "code": "6 Adv.7B",
+       "text": "determine if two expressions are equivalent using concrete models, pictorial models, and algebraic representations"
+      },
+      {
+       "code": "6 Adv.7C",
+       "text": "generate equivalent expressions using the properties of operations: inverse, identity, commutative, associative, and distributive properties"
+      }
+     ]
+    },
+    {
+     "title": "One-variable expressions, equations, and relationships--applications of one-variable relationships",
+     "statement": "The student applies mathematical process standards to use equations and inequalities to represent situations and solve problems. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6 Adv.8A",
+       "text": "write one-variable, one- and two-step equations and inequalities to represent constraints or conditions within problems"
+      },
+      {
+       "code": "6 Adv.8B",
+       "text": "write corresponding real-world problems given one-variable, one- and two-step equations or inequalities"
+      },
+      {
+       "code": "6 Adv.8C",
+       "text": "represent solutions for one-variable, one- and two-step equations and inequalities on number lines"
+      },
+      {
+       "code": "6 Adv.8D",
+       "text": "model and solve one-variable, one-step equations and inequalities that represent problems, including geometric concepts"
+      },
+      {
+       "code": "6 Adv.8E",
+       "text": "model and solve one-variable, two-step equations and inequalities"
+      },
+      {
+       "code": "6 Adv.8F",
+       "text": "determine if the given value(s) make(s) one-variable, one- and two-step equations and inequalities true"
+      }
+     ]
+    },
+    {
+     "title": "Two-variable equations and relationships--foundations of linear relationships",
+     "statement": "The student applies mathematical process standards to use multiple representations to describe algebraic relationships. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6 Adv.9A",
+       "text": "identify independent and dependent quantities from tables and graphs"
+      },
+      {
+       "code": "6 Adv.9B",
+       "text": "write an equation that represents the relationship between independent and dependent quantities from a table"
+      },
+      {
+       "code": "6 Adv.9C",
+       "text": "represent a given situation using verbal descriptions, tables, graphs, and equations in the form y = kx or y = x + b"
+      },
+      {
+       "code": "6 Adv.9D",
+       "text": "compare two rules verbally, numerically, graphically, and symbolically in the form of y = ax or y = x + a in order to differentiate between additive and multiplicative relationships"
+      }
+     ]
+    },
+    {
+     "title": "Two-variable equations and relationships--applications of proportional relationships",
+     "statement": "The student applies mathematical process standards to represent and solve problems involving proportional relationships.",
+     "expectations": [
+      {
+       "code": "6 Adv.10A",
+       "text": "represent constant rates of change in mathematical and real-world problems given pictorial, tabular, verbal, numeric, graphical, and algebraic representations, including d = rt"
+      }
+     ]
+    },
+    {
+     "title": "Geometric expressions, equations, and relationships--foundations of geometric concepts equations",
+     "statement": "The student applies mathematical process standards to use geometry to represent relationships. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6 Adv.11A",
+       "text": "model area formulas for parallelograms, trapezoids, and triangles by decomposing and rearranging parts of these shapes"
+      },
+      {
+       "code": "6 Adv.11B",
+       "text": "write equations that represent problems related to the area of rectangles, parallelograms, trapezoids, and triangles and volume of right rectangular prisms where dimensions are positive rational numbers"
+      }
+     ]
+    },
+    {
+     "title": "Geometric expressions, equations, and relationships--applications of geometric concepts",
+     "statement": "The student applies mathematical process standards to use geometry to represent relationships and solve problems. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6 Adv.12A",
+       "text": "extend previous knowledge of triangles and their properties to include the sum of angles of a triangle, the relationship between the lengths of sides and measures of angles in a triangle, and determining when three lengths form a triangle"
+      },
+      {
+       "code": "6 Adv.12B",
+       "text": "determine solutions for problems involving the area of rectangles, parallelograms, trapezoids, and triangles where dimensions are positive rational numbers"
+      },
+      {
+       "code": "6 Adv.12C",
+       "text": "solve problems involving the volume of right rectangular prisms and triangular prisms"
+      },
+      {
+       "code": "6 Adv.12D",
+       "text": "write and solve equations using geometry concepts, including the sum of the angles in a triangle, and angle relationships"
+      }
+     ]
+    },
+    {
+     "title": "Data science--foundations of measurement and data",
+     "statement": "The student applies mathematical process standards to represent and analyze data. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6 Adv.13A",
+       "text": "distinguish between situations that yield data with and without variability"
+      },
+      {
+       "code": "6 Adv.13B",
+       "text": "represent numeric data graphically, including dot plots, stem-and-leaf plots, histograms, and box plots"
+      }
+     ]
+    },
+    {
+     "title": "Data science--applications of measurement and data",
+     "statement": "The student applies mathematical process standards to use numerical or graphical representations to analyze and solve problems. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6 Adv.14A",
+       "text": "use the graphical representation of numeric data to describe the center, spread, and shape of the data distribution"
+      },
+      {
+       "code": "6 Adv.14B",
+       "text": "summarize numeric data with numerical summaries, including the mean and median (measures of center) and the range and interquartile range (IQR) (measures of spread), and use these summaries to describe the center, spread, and shape of the data distribution"
+      },
+      {
+       "code": "6 Adv.14C",
+       "text": "interpret numeric data summarized in dot plots, stem-and-leaf plots, histograms, and box plots"
+      },
+      {
+       "code": "6 Adv.14D",
+       "text": "solve problems using data represented in bar graphs, dot plots, and circle graphs, including part-to-whole and part-to-part comparisons and equivalents"
+      },
+      {
+       "code": "6 Adv.14E",
+       "text": "compare two groups of numeric data using comparative dot plots or box plots by comparing their shapes, centers, and spreads"
+      },
+      {
+       "code": "6 Adv.14F",
+       "text": "summarize categorical data with numerical and graphical summaries, including the mode, the percent of values in each category (relative frequency table), and the percent bar graph, and use these summaries to describe the data distribution"
+      }
+     ]
+    },
+    {
+     "title": "Personal financial literacy--money management",
+     "statement": "The student applies mathematical process standards to develop an economic way of thinking and problem solving useful in one's life as a knowledgeable consumer and investor. The student is expected to:",
+     "expectations": [
+      {
+       "code": "6 Adv.15A",
+       "text": "compare the features and costs of a checking account and a debit card offered by different local financial institutions"
+      },
+      {
+       "code": "6 Adv.15B",
+       "text": "identify and explain the advantages and disadvantages of different payment methods, including distinguishing between debit cards and credit cards"
+      },
+      {
+       "code": "6 Adv.15C",
+       "text": "explain why it is important to establish a positive credit history"
+      },
+      {
+       "code": "6 Adv.15D",
+       "text": "describe the information in a credit report and how long it is retained"
+      },
+      {
+       "code": "6 Adv.15E",
+       "text": "describe the value of credit reports to borrowers and to lenders"
+      },
+      {
+       "code": "6 Adv.15F",
+       "text": "explain various methods to pay for college, including through savings, grants, scholarships, student loans, and work-study"
+      },
+      {
+       "code": "6 Adv.15G",
+       "text": "compare the annual salary of several occupations requiring various levels of post-secondary education or vocational training and calculate the effects of the different annual salaries on lifetime income"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "math7adv",
+   "name": "Grade 7 Advanced Mathematics",
+   "subject": "Mathematics",
+   "grade": "7",
+   "section": "19 TAC §111.30",
+   "note": "Adopted 2025; districts may use from 2025-26",
+   "strands": [
+    {
+     "title": "Mathematical process standards",
+     "statement": "The student uses mathematical processes to acquire and demonstrate mathematical understanding. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7 Adv.1A",
+       "text": "apply mathematics to problems arising in everyday life, society, and the workplace"
+      },
+      {
+       "code": "7 Adv.1B",
+       "text": "use a problem-solving model that incorporates analyzing given information, formulating a plan or strategy, determining a solution, justifying the solution, and evaluating the problem-solving process and the reasonableness of the solution"
+      },
+      {
+       "code": "7 Adv.1C",
+       "text": "select tools, including real objects, manipulatives, paper and pencil, and technology as appropriate, and techniques, including mental math, estimation, and number sense as appropriate, to solve problems"
+      },
+      {
+       "code": "7 Adv.1D",
+       "text": "communicate mathematical ideas, reasoning, and their implications using multiple representations, including symbols, diagrams, graphs, and language as appropriate"
+      },
+      {
+       "code": "7 Adv.1E",
+       "text": "create and use representations to organize, record, and communicate mathematical ideas"
+      },
+      {
+       "code": "7 Adv.1F",
+       "text": "analyze mathematical relationships to connect and communicate mathematical ideas"
+      },
+      {
+       "code": "7 Adv.1G",
+       "text": "display, explain, and justify mathematical ideas and arguments using precise mathematical language in written or oral communication"
+      }
+     ]
+    },
+    {
+     "title": "Numeracy--foundations of real numbers",
+     "statement": "The student applies mathematical process standards to represent and use real numbers in a variety of forms. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7 Adv.2A",
+       "text": "extend previous knowledge of sets and subsets using a visual representation to describe relationships between sets of real numbers"
+      },
+      {
+       "code": "7 Adv.2B",
+       "text": "approximate the value of an irrational number, including π and square roots of numbers less than 225, and locate that rational number approximation on a number line"
+      },
+      {
+       "code": "7 Adv.2C",
+       "text": "convert between standard decimal notation and scientific notation"
+      },
+      {
+       "code": "7 Adv.2D",
+       "text": "order a set of real numbers arising from mathematical and real-world contexts"
+      }
+     ]
+    },
+    {
+     "title": "Numeracy--operations with rational numbers",
+     "statement": "The student applies mathematical process standards to add, subtract, multiply, and divide while solving problems and justifying solutions. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7 Adv.3A",
+       "text": "add, subtract, multiply, and divide rational numbers fluently"
+      },
+      {
+       "code": "7 Adv.3B",
+       "text": "apply and extend previous understandings of operations to solve problems using addition, subtraction, multiplication, and division of rational numbers"
+      }
+     ]
+    },
+    {
+     "title": "Numeracy--applications of percents",
+     "statement": "The student applies mathematical process standards to represent and solve problems involving percents as proportional relationships. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7 Adv.4A",
+       "text": "solve problems involving ratios, rates, and percents, including multi-step problems involving percent increase and percent decrease, and financial literacy problems"
+      },
+      {
+       "code": "7 Adv.4B",
+       "text": "calculate and compare simple interest and compound interest earnings"
+      },
+      {
+       "code": "7 Adv.4C",
+       "text": "analyze and compare monetary incentives, including sales, rebates, and coupons"
+      },
+      {
+       "code": "7 Adv.4D",
+       "text": "solve real-world problems comparing how interest rate and loan length affect the cost of credit"
+      },
+      {
+       "code": "7 Adv.4E",
+       "text": "calculate the total cost of repaying a loan, including credit cards and easy access loans, under various rates of interest and over different periods using an online calculator"
+      },
+      {
+       "code": "7 Adv.4F",
+       "text": "explain how small amounts of money invested regularly, including money saved for college and retirement, grow over time"
+      },
+      {
+       "code": "7 Adv.4G",
+       "text": "estimate the cost of a two-year and four-year college education, including family contribution, and devise a periodic savings plan for accumulating the money needed to contribute to the total cost of attendance for at least the first year of college"
+      }
+     ]
+    },
+    {
+     "title": "Proportionality--geometric ratios",
+     "statement": "The student applies mathematical process standards to use geometry to describe or solve problems involving proportional relationships such as dilations. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7 Adv.5A",
+       "text": "describe π as the ratio of the circumference of a circle to its diameter"
+      },
+      {
+       "code": "7 Adv.5B",
+       "text": "generalize the critical attributes of similarity, including ratios within and between similar shapes"
+      },
+      {
+       "code": "7 Adv.5C",
+       "text": "solve mathematical and real-world problems involving similar shape and scale drawings"
+      },
+      {
+       "code": "7 Adv.5D",
+       "text": "compare and contrast the attributes of a shape and its dilation(s) on a coordinate plane"
+      },
+      {
+       "code": "7 Adv.5E",
+       "text": "use an algebraic representation to explain the effect of a given positive rational scale factor applied to two-dimensional figures on a coordinate plane with the origin as the center of dilation"
+      }
+     ]
+    },
+    {
+     "title": "Proportionality--probability",
+     "statement": "The student applies mathematical process standards to use probability and statistics to describe or solve problems involving proportional relationships. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7 Adv.6A",
+       "text": "represent sample spaces for simple and compound events using lists and tree diagrams"
+      },
+      {
+       "code": "7 Adv.6B",
+       "text": "select and use different simulations to represent simple and compound events with and without technology"
+      },
+      {
+       "code": "7 Adv.6C",
+       "text": "make predictions and determine solutions using experimental data for simple and compound events"
+      },
+      {
+       "code": "7 Adv.6D",
+       "text": "make predictions and determine solutions using theoretical probability for simple and compound events"
+      },
+      {
+       "code": "7 Adv.6E",
+       "text": "find the probabilities of a simple event and its complement and describe the relationship between the two"
+      },
+      {
+       "code": "7 Adv.6F",
+       "text": "solve problems using qualitative and quantitative predictions and comparisons from simple experiments"
+      },
+      {
+       "code": "7 Adv.6G",
+       "text": "determine experimental and theoretical probabilities related to simple and compound events using data and sample spaces"
+      }
+     ]
+    },
+    {
+     "title": "One-variable expressions, equations, and relationships--applications of one-variable relationships",
+     "statement": "The student applies mathematical process standards to use one-variable equations or inequalities in problem situations. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7 Adv.7A",
+       "text": "represent solutions for one-variable, two-step inequalities on number lines"
+      },
+      {
+       "code": "7 Adv.7B",
+       "text": "model and solve one-variable, two-step inequalities"
+      },
+      {
+       "code": "7 Adv.7C",
+       "text": "write one-variable equations or inequalities with variables on both sides that represent problems using rational number coefficients and constants"
+      },
+      {
+       "code": "7 Adv.7D",
+       "text": "write a corresponding real-world problem when given a one-variable equation or inequality with variables on both sides of the equal sign using rational number coefficients and constants"
+      },
+      {
+       "code": "7 Adv.7E",
+       "text": "model and solve one-variable equations with variables on both sides of the equal sign that represent mathematical and real-world problems using rational number coefficients and constants"
+      }
+     ]
+    },
+    {
+     "title": "Two-variable equations and relationships--foundations of linear relationships",
+     "statement": "The student applies mathematical process standards to use proportional and non-proportional relationships to develop foundational concepts of functions. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7 Adv.8A",
+       "text": "determine the constant of proportionality (k = y/x) within mathematical and real-world problems"
+      },
+      {
+       "code": "7 Adv.8B",
+       "text": "distinguish between proportional and non-proportional situations using tables, graphs, and equations in the form y = kx or y = mx + b, where b ≠ 0"
+      },
+      {
+       "code": "7 Adv.8C",
+       "text": "identify examples of proportional and non-proportional relationships that arise from mathematical and real-world problems"
+      }
+     ]
+    },
+    {
+     "title": "Two-variable equations and relationships--applications of linear relationships",
+     "statement": "The student applies mathematical process standards to represent linear relationships using multiple representations.",
+     "expectations": [
+      {
+       "code": "7 Adv.9A",
+       "text": "represent linear proportional and non-proportional relationships using verbal descriptions, tables, graphs, and equations that simplify to the form y = mx + b"
+      }
+     ]
+    },
+    {
+     "title": "Geometric expressions, equations, and relationships--foundations of geometric concepts",
+     "statement": "The student applies mathematical process standards to develop geometric relationships and solve problems. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7 Adv.10A",
+       "text": "use models to determine the approximate formulas for the circumference and area of a circle and connect the models to the actual formulas"
+      },
+      {
+       "code": "7 Adv.10B",
+       "text": "solve problems involving the lateral and total surface area of a rectangular prism, rectangular pyramid, triangular prism, and triangular pyramid by determining the area of the shape's net"
+      },
+      {
+       "code": "7 Adv.10C",
+       "text": "describe the volume formula V = Bh of a cylinder in terms of its base area and its height"
+      },
+      {
+       "code": "7 Adv.10D",
+       "text": "model the relationship between the volume of a rectangular prism and a rectangular pyramid having both congruent bases and heights and connect that relationship to the formulas"
+      },
+      {
+       "code": "7 Adv.10E",
+       "text": "explain verbally and symbolically the relationship between the volume of a triangular prism and a triangular pyramid having both congruent bases and heights and connect that relationship to the formulas"
+      },
+      {
+       "code": "7 Adv.10F",
+       "text": "model the relationship between the volume of a cylinder and a cone having both congruent bases and heights and connect that relationship to the formulas"
+      },
+      {
+       "code": "7 Adv.10G",
+       "text": "use models and diagrams to explain the Pythagorean theorem"
+      },
+      {
+       "code": "7 Adv.10H",
+       "text": "use informal arguments to establish facts about the angle sum and exterior angle of triangles, the angles created when parallel lines are cut by a transversal, and the angle- angle criterion for similarity of triangles"
+      }
+     ]
+    },
+    {
+     "title": "Geometric expressions, equations, and relationships--applications of geometric concepts",
+     "statement": "The student applies mathematical process standards to solve geometric problems. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7 Adv.11A",
+       "text": "determine the circumference and area of circles"
+      },
+      {
+       "code": "7 Adv.11B",
+       "text": "determine the area of composite figures containing combinations of rectangles, squares, parallelograms, trapezoids, triangles, semicircles, and quarter circles"
+      },
+      {
+       "code": "7 Adv.11C",
+       "text": "use previous knowledge of surface area to make connections to the formulas for lateral and total surface area and determine solutions for problems involving rectangular prisms, triangular prisms, and cylinders"
+      },
+      {
+       "code": "7 Adv.11D",
+       "text": "solve problems involving the volume of rectangular pyramids and triangular pyramids"
+      },
+      {
+       "code": "7 Adv.11E",
+       "text": "solve problems involving the volume of cylinders, cones, and spheres"
+      },
+      {
+       "code": "7 Adv.11F",
+       "text": "use the Pythagorean theorem and its converse to solve problems"
+      },
+      {
+       "code": "7 Adv.11G",
+       "text": "determine the distance between two points on a coordinate plane using the Pythagorean theorem"
+      }
+     ]
+    },
+    {
+     "title": "Geometric expressions, equations, and relationships--transformations",
+     "statement": "The student applies mathematical process standards to develop transformational geometry concepts. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7 Adv.12A",
+       "text": "generalize the properties of orientation and congruence of rotations, reflections, translations, and dilations of two-dimensional shapes on a coordinate plane"
+      },
+      {
+       "code": "7 Adv.12B",
+       "text": "differentiate between transformations that preserve congruence and those that do not"
+      },
+      {
+       "code": "7 Adv.12C",
+       "text": "explain the effect of translations, reflections over the x- or y-axis, and rotations limited to 90°, 180°, 270°, and 360° as applied to two-dimensional shapes on a coordinate plane using an algebraic representation"
+      },
+      {
+       "code": "7 Adv.12D",
+       "text": "model the effect on linear and area measurements of dilated two-dimensional shapes"
+      }
+     ]
+    },
+    {
+     "title": "Data science--applications of measurement and data",
+     "statement": "The student applies mathematical process standards to use statistical representations and procedures to analyze and describe data. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7 Adv.13A",
+       "text": "use data from a random sample to make inferences about a population"
+      },
+      {
+       "code": "7 Adv.13B",
+       "text": "compare two populations based on data in random samples from these populations, including informal comparative inferences about differences between the two populations"
+      },
+      {
+       "code": "7 Adv.13C",
+       "text": "simulate generating random samples of the same size from a population with known characteristics to develop the notion of a random sample being representative of the population from which it was selected"
+      },
+      {
+       "code": "7 Adv.13D",
+       "text": "determine the mean absolute deviation and use this quantity as a measure of the average distance data are from the mean using a data set of no more than 10 data points"
+      }
+     ]
+    },
+    {
+     "title": "Personal financial literacy--money management",
+     "statement": "The student applies mathematical process standards to develop an economic way of thinking and problem solving useful in one's life as a knowledgeable consumer and investor. The student is expected to:",
+     "expectations": [
+      {
+       "code": "7 Adv.14A",
+       "text": "identify the components of a personal budget, including income; planned savings for college, retirement, and emergencies; taxes; and fixed and variable expenses, and calculate what percentage each category comprises of the total budget"
+      },
+      {
+       "code": "7 Adv.14B",
+       "text": "use a family budget estimator to determine the minimum household budget and average hourly wage needed for a family to meet its basic needs in the student's city or another large city nearby"
+      },
+      {
+       "code": "7 Adv.14C",
+       "text": "analyze situations to determine if they represent financially responsible decisions and identify the benefits of financial responsibility and the costs of financial irresponsibility"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "math8adv",
+   "name": "Grade 8 Advanced Mathematics, Algebra I",
+   "subject": "Mathematics",
+   "grade": "8",
+   "section": "19 TAC §111.31",
+   "note": "Adopted 2025; districts may use from 2025-26",
+   "strands": [
+    {
+     "title": "Mathematical process standards",
+     "statement": "The student uses mathematical processes to acquire and demonstrate mathematical understanding. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8 Adv.1A",
+       "text": "apply mathematics to problems arising in everyday life, society, and the workplace"
+      },
+      {
+       "code": "8 Adv.1B",
+       "text": "use a problem-solving model that incorporates analyzing given information, formulating a plan or strategy, determining a solution, justifying the solution, and evaluating the problem-solving process and the reasonableness of the solution"
+      },
+      {
+       "code": "8 Adv.1C",
+       "text": "select tools, including real objects, manipulatives, paper and pencil, and technology as appropriate, and techniques, including mental math, estimation, and number sense as appropriate, to solve problems"
+      },
+      {
+       "code": "8 Adv.1D",
+       "text": "communicate mathematical ideas, reasoning, and their implications using multiple representations, including symbols, diagrams, graphs, and language as appropriate"
+      },
+      {
+       "code": "8 Adv.1E",
+       "text": "create and use representations to organize, record, and communicate mathematical ideas"
+      },
+      {
+       "code": "8 Adv.1F",
+       "text": "analyze mathematical relationships to connect and communicate mathematical ideas"
+      },
+      {
+       "code": "8 Adv.1G",
+       "text": "display, explain, and justify mathematical ideas and arguments using precise mathematical language in written or oral communication"
+      }
+     ]
+    },
+    {
+     "title": "Linear functions, equations, and inequalities",
+     "statement": "The student applies the mathematical process standards when using properties of linear functions to write and represent in multiple ways, with and without technology, linear equations, inequalities, and systems of equations. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8 Adv.2A",
+       "text": "determine the domain and range of a linear function in mathematical problems; determine reasonable domain and range values for real-world situations, both continuous and discrete; and represent domain and range using inequalities"
+      },
+      {
+       "code": "8 Adv.2B",
+       "text": "write linear equations in two variables in various forms, including y = mx + b, Ax + By = C, and y - y1 = m(x - x1), given one point and the slope and given two points"
+      },
+      {
+       "code": "8 Adv.2C",
+       "text": "write linear equations in two variables given a table of values, a graph, and a verbal description"
+      },
+      {
+       "code": "8 Adv.2D",
+       "text": "write and solve equations involving direct variation"
+      },
+      {
+       "code": "8 Adv.2E",
+       "text": "write the equation of a line that contains a given point and is parallel to a given line"
+      },
+      {
+       "code": "8 Adv.2F",
+       "text": "write the equation of a line that contains a given point and is perpendicular to a given line"
+      },
+      {
+       "code": "8 Adv.2G",
+       "text": "write an equation of a line that is parallel or perpendicular to the x- or y- axis and determine whether the slope of the line is zero or undefined"
+      },
+      {
+       "code": "8 Adv.2H",
+       "text": "write linear inequalities in two variables given a table of values, a graph, and a verbal description"
+      },
+      {
+       "code": "8 Adv.2I",
+       "text": "write systems of two linear equations given a table of values, a graph, and a verbal description"
+      }
+     ]
+    },
+    {
+     "title": "Linear functions, equations, and inequalities",
+     "statement": "The student applies the mathematical process standards when using graphs of linear functions, key features, and related transformations to represent in multiple ways and solve, with and without technology, equations, inequalities, and systems of equations. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8 Adv.3A",
+       "text": "use similar right triangles to develop an understanding that slope, m, given as the rate comparing the change in y-values to the change in x-values, (y2 - y1)/ (x2 - x1), is the same for any two points (x1, y1) and (x2, y2) on the same line"
+      },
+      {
+       "code": "8 Adv.3B",
+       "text": "graph proportional relationships, interpreting the unit rate as the slope of the line that models the relationship"
+      },
+      {
+       "code": "8 Adv.3C",
+       "text": "determine the slope of a line given a table of values, a graph, two points on the line, and an equation written in various forms, including y = mx + b, Ax + By = C, and y - y1 = m(x - x1)"
+      },
+      {
+       "code": "8 Adv.3D",
+       "text": "calculate the rate of change of a linear function represented tabularly, graphically, or algebraically in context of mathematical and real-world problems"
+      },
+      {
+       "code": "8 Adv.3E",
+       "text": "use data from a table or graph to determine the rate of change or slope and y-intercept in mathematical and real-world problems"
+      },
+      {
+       "code": "8 Adv.3F",
+       "text": "graph linear functions on the coordinate plane and identify key features, including x - intercept, y-intercept, zeros, and slope, in mathematical and real-world problems"
+      },
+      {
+       "code": "8 Adv.3G",
+       "text": "graph the solution set of linear inequalities in two variables on the coordinate plane"
+      },
+      {
+       "code": "8 Adv.3H",
+       "text": "determine the effects on the graph of the parent function f(x) = x when f(x) is replaced by af(x), f(x) + d, f(x - c), and f(bx) for specific values of a, b, c, and d"
+      },
+      {
+       "code": "8 Adv.3I",
+       "text": "graph systems of two linear equations in two variables on the coordinate plane and determine the solutions if they exist"
+      },
+      {
+       "code": "8 Adv.3J",
+       "text": "estimate graphically the solutions to systems of two linear equations with two variables in real-world problems"
+      },
+      {
+       "code": "8 Adv.3K",
+       "text": "graph the solution set of systems of two linear inequalities in two variables on the coordinate plane"
+      }
+     ]
+    },
+    {
+     "title": "Linear functions, equations, and inequalities",
+     "statement": "The student applies the mathematical process standards to formulate statistical relationships and evaluate their reasonableness based on real-world data. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8 Adv.4A",
+       "text": "construct a scatterplot and describe the observed data to address questions of association such as linear, non-linear, and no association between bivariate data"
+      },
+      {
+       "code": "8 Adv.4B",
+       "text": "contrast bivariate sets of data that suggest a linear relationship with bivariate sets of data that do not suggest a linear relationship from a graphical representation"
+      },
+      {
+       "code": "8 Adv.4C",
+       "text": "use a trend line that approximates the linear relationship between bivariate sets of data to make predictions"
+      },
+      {
+       "code": "8 Adv.4D",
+       "text": "calculate, using technology, the correlation coefficient between two quantitative variables and interpret this quantity as a measure of the strength of the linear association"
+      },
+      {
+       "code": "8 Adv.4E",
+       "text": "compare and contrast association and causation in real-world problems"
+      },
+      {
+       "code": "8 Adv.4F",
+       "text": "write, with and without technology, linear functions that provide a reasonable fit to data to estimate solutions and make predictions for real-world problems"
+      }
+     ]
+    },
+    {
+     "title": "Linear functions, equations, and inequalities",
+     "statement": "The student applies the mathematical process standards to solve, with and without technology, linear equations and evaluate the reasonableness of their solutions. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8 Adv.5A",
+       "text": "solve linear equations in one variable, including those for which the application of the distributive property is necessary and for which variables are included on both sides"
+      },
+      {
+       "code": "8 Adv.5B",
+       "text": "solve linear inequalities in one variable, including those for which the application of the distributive property is necessary and for which variables are included on both sides"
+      },
+      {
+       "code": "8 Adv.5C",
+       "text": "solve systems of two linear equations with two variables for mathematical and real-world problems"
+      }
+     ]
+    },
+    {
+     "title": "Quadratic functions and equations",
+     "statement": "The student applies the mathematical process standards when using properties of quadratic functions to write and represent in multiple ways, with and without technology, quadratic equations. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8 Adv.6A",
+       "text": "determine the domain and range of quadratic functions and represent the domain and range using inequalities"
+      },
+      {
+       "code": "8 Adv.6B",
+       "text": "write equations of quadratic functions given the vertex and another point on the graph, write the equation in vertex form (f(x) = a(x - h)2+ k), and rewrite the equation from vertex form to standard form (f(x) = ax2+ bx + c)"
+      },
+      {
+       "code": "8 Adv.6C",
+       "text": "write quadratic functions when given real solutions and graphs of their related equations"
+      }
+     ]
+    },
+    {
+     "title": "Quadratic functions and equations",
+     "statement": "The student applies the mathematical process standards when using graphs of quadratic functions and their related transformations to represent in multiple ways and determine, with and without technology, the solutions to equations. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8 Adv.7A",
+       "text": "graph quadratic functions on the coordinate plane and use the graph to identify key attributes, if possible, including x-intercept, y-intercept, zeros, maximum value, minimum values, vertex, and the equation of the axis of symmetry"
+      },
+      {
+       "code": "8 Adv.7B",
+       "text": "describe the relationship between the linear factors of quadratic expressions and the zeros of their associated quadratic functions"
+      },
+      {
+       "code": "8 Adv.7C",
+       "text": "determine the effects on the graph of the parent function f(x) = x2 when f(x) is replaced by af(x), f(x) + d, f(x - c), and f(bx) for specific values of a, b, c, and d"
+      }
+     ]
+    },
+    {
+     "title": "Quadratic functions and equations",
+     "statement": "The student applies the mathematical process standards to solve, with and without technology, quadratic equations and evaluate the reasonableness of their solutions. The student formulates statistical relationships and evaluates their reasonableness based on real-world data. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8 Adv.8A",
+       "text": "solve quadratic equations having real solutions by factoring, taking square roots, completing the square, and applying the quadratic formula"
+      },
+      {
+       "code": "8 Adv.8B",
+       "text": "write, using technology, quadratic functions that provide a reasonable fit to data to estimate solutions and make predictions for real-world problems"
+      }
+     ]
+    },
+    {
+     "title": "Exponential functions and equations",
+     "statement": "The student applies the mathematical process standards when using properties of exponential functions and their related transformations to write, graph, and represent in multiple ways exponential equations and evaluate, with and without technology, the reasonableness of their solutions. The student formulates statistical relationships and evaluates their reasonableness based on real-world data. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8 Adv.9A",
+       "text": "determine the domain and range of exponential functions of the form f(x) = abx and represent the domain and range using inequalities"
+      },
+      {
+       "code": "8 Adv.9B",
+       "text": "interpret the meaning of the values of a and b in exponential functions of the form f (x) = abx in real-world problems"
+      },
+      {
+       "code": "8 Adv.9C",
+       "text": "write exponential functions in the form f(x) = abx (where b is a rational number) to describe problems arising from mathematical and real-world situations, including growth and decay"
+      },
+      {
+       "code": "8 Adv.9D",
+       "text": "graph exponential functions that model growth and decay and identify key features, including y-intercept and asymptote, in mathematical and real-world problems"
+      },
+      {
+       "code": "8 Adv.9E",
+       "text": "write, using technology, exponential functions that provide a reasonable fit to data and make predictions for real-world problems"
+      }
+     ]
+    },
+    {
+     "title": "Number and algebraic methods",
+     "statement": "The student applies the mathematical process standards and algebraic methods to rewrite in equivalent forms and perform operations on polynomial expressions. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8 Adv.10A",
+       "text": "add and subtract polynomials of degree one and degree two"
+      },
+      {
+       "code": "8 Adv.10B",
+       "text": "multiply polynomials of degree one and degree two"
+      },
+      {
+       "code": "8 Adv.10C",
+       "text": "determine the quotient of a polynomial of degree one and polynomial of degree two when divided by a polynomial of degree one and polynomial of degree two when the degree of the divisor does not exceed the degree of the dividend"
+      },
+      {
+       "code": "8 Adv.10D",
+       "text": "rewrite polynomial expressions of degree one and degree two in equivalent forms using the distributive property"
+      },
+      {
+       "code": "8 Adv.10E",
+       "text": "factor, if possible, trinomials with real factors in the form ax2 + bx + c, including perfect square trinomials of degree two"
+      },
+      {
+       "code": "8 Adv.10F",
+       "text": "decide if a binomial can be written as the difference of two squares and, if possible, use the structure of a difference of two squares to rewrite the binomial"
+      }
+     ]
+    },
+    {
+     "title": "Number and algebraic methods",
+     "statement": "The student applies the mathematical process standards and algebraic methods to rewrite algebraic expressions into equivalent forms. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8 Adv.11A",
+       "text": "simplify numerical radical expressions involving square roots"
+      },
+      {
+       "code": "8 Adv.11B",
+       "text": "simplify numeric and algebraic expressions using the laws of exponents, including integral and rational exponents"
+      }
+     ]
+    },
+    {
+     "title": "Number and algebraic methods",
+     "statement": "The student applies the mathematical process standards and algebraic methods to write, solve, analyze, and evaluate equations, relations, and functions. The student is expected to:",
+     "expectations": [
+      {
+       "code": "8 Adv.12A",
+       "text": "identify functions using sets of ordered pairs and mappings"
+      },
+      {
+       "code": "8 Adv.12B",
+       "text": "decide whether relations represented verbally, tabularly, graphically, and symbolically define a function"
+      },
+      {
+       "code": "8 Adv.12C",
+       "text": "evaluate functions, expressed in function notation, given one or more elements in their domains"
+      },
+      {
+       "code": "8 Adv.12D",
+       "text": "identify terms of arithmetic and geometric sequences when the sequences are given in function form using recursive processes"
+      },
+      {
+       "code": "8 Adv.12E",
+       "text": "write a formula for the nth term of arithmetic and geometric sequences, given the value of several of their terms"
+      },
+      {
+       "code": "8 Adv.12F",
+       "text": "solve mathematic and scientific formulas, and other literal equations, for a specified variable"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

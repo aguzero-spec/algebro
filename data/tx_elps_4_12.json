@@ -1,0 +1,145 @@
+{
+ "title": "English Language Proficiency Standards (ELPS), Grades 4-12, Adopted 2024",
+ "section": "19 TAC §120.21(d)",
+ "applies_from": "2026-2027 school year",
+ "levels": [
+  "pre-production",
+  "beginning",
+  "intermediate",
+  "high intermediate",
+  "advanced"
+ ],
+ "source": "https://tea.texas.gov/laws-and-rules/sboe-rules-tac/sboe-tac-currently-effect/ch120b.pdf",
+ "source_version": "February 2025 Update",
+ "retrieved": "2026-10-14",
+ "domains": [
+  {
+   "title": "Listening",
+   "statement": "The EB student listens to a variety of speakers, including teachers, peers, and multimedia, to gain an increasing level of comprehension in all content areas. The EB student may be at the pre-production, beginning, intermediate, high intermediate, or advanced proficiency levels in listening. The student is expected to:",
+   "expectations": [
+    {
+     "code": "ELPS L.A",
+     "text": "distinguish sounds and intonation patterns by responding with gestures or images, orally, or in writing"
+    },
+    {
+     "code": "ELPS L.B",
+     "text": "use contextual factors or word analysis such as cognates, Greek and Latin prefixes, suffixes, and roots to comprehend content-specific vocabulary when heard during formal and informal classroom interactions by responding with gestures or images, orally, or in writing"
+    },
+    {
+     "code": "ELPS L.C",
+     "text": "respond with accuracy to oral directions, instructions, and requests"
+    },
+    {
+     "code": "ELPS L.D",
+     "text": "use context to construct the meaning of descriptive language, words with multiple meanings, register, and figurative language such as idiomatic expressions heard during formal and informal classroom interactions"
+    },
+    {
+     "code": "ELPS L.E",
+     "text": "demonstrate listening comprehension from information presented orally during formal and informal classroom interactions by restating, responding, paraphrasing, summarizing, or asking for clarification or additional details"
+    },
+    {
+     "code": "ELPS L.F",
+     "text": "derive meaning from a variety of auditory multimedia sources to build and reinforce concepts and language acquisition"
+    }
+   ]
+  },
+  {
+   "title": "Speaking",
+   "statement": "The EB student speaks using a variety of language structures for a variety of purposes with an awareness of different language registers (formal/informal) using vocabulary with increasing accuracy and fluency in all content areas. The EB student may be at the pre-production, beginning, intermediate, high intermediate, or advanced proficiency level of English language acquisition in speaking. The student is expected to:",
+   "expectations": [
+    {
+     "code": "ELPS S.A",
+     "text": "pronounce words, including high-frequency words, cognates, and increasingly complex syllable types, with accuracy"
+    },
+    {
+     "code": "ELPS S.B",
+     "text": "speak using content-area vocabulary during formal and informal classroom interactions to demonstrate acquisition of new words and high-frequency words"
+    },
+    {
+     "code": "ELPS S.C",
+     "text": "speak using a variety of language and grammatical structures, sentence lengths and types, and transition words"
+    },
+    {
+     "code": "ELPS S.D",
+     "text": "speak using appropriate register to convey a message during formal and informal classroom interactions with accuracy and fluency"
+    },
+    {
+     "code": "ELPS S.E",
+     "text": "narrate, describe, explain, justify, discuss, elaborate, or evaluate orally with increasing specificity and detail in academic context or discourse"
+    },
+    {
+     "code": "ELPS S.F",
+     "text": "restate, ask questions about, or respond to information during formal and informal classroom interactions"
+    }
+   ]
+  },
+  {
+   "title": "Reading",
+   "statement": "The EB student reads a variety of texts for different purposes with an increasing level of comprehension in all content areas. The EB student may be at the pre-production, beginning, intermediate, high intermediate, or advanced proficiency levels of English language acquisition in reading. The student is expected to:",
+   "expectations": [
+    {
+     "code": "ELPS R.A",
+     "text": "demonstrate awareness of print concepts and directionality of reading as left to right and top to bottom"
+    },
+    {
+     "code": "ELPS R.B",
+     "text": "decode words using the relationships between sounds and letters and identify syllable patterns, cognates, affixes, roots, or base words"
+    },
+    {
+     "code": "ELPS R.C",
+     "text": "use high-frequency words, contextual factors, and word analysis such as Greek and Latin prefixes, suffixes, and roots and cognates to comprehend content-area vocabulary in text"
+    },
+    {
+     "code": "ELPS R.D",
+     "text": "use context to construct the meaning of figurative language such as idiomatic expressions, descriptive language, and words with multiple meanings to comprehend a variety of text"
+    },
+    {
+     "code": "ELPS R.E",
+     "text": "use pre-reading strategies, including previewing the text features, connecting to prior knowledge, organizing ideas, and making predictions, to develop comprehension"
+    },
+    {
+     "code": "ELPS R.F",
+     "text": "derive meaning from and demonstrate comprehension of content-area texts using visual, contextual, and linguistic supports"
+    },
+    {
+     "code": "ELPS R.G",
+     "text": "demonstrate reading comprehension of content-area texts by retelling, paraphrasing, summarizing, and responding to questions"
+    },
+    {
+     "code": "ELPS R.H",
+     "text": "read with fluency and prosody and demonstrate comprehension of content-area text"
+    }
+   ]
+  },
+  {
+   "title": "Writing",
+   "statement": "The EB student writes using a variety of language structures with increasing accuracy to effectively address a variety of purposes (formal and informal) and audiences in all content areas. The EB student may be at the pre-production, beginning, intermediate, high intermediate, or advanced proficiency levels of English language acquisition in writing. The student is expected to:",
+   "expectations": [
+    {
+     "code": "ELPS W.A",
+     "text": "apply relationships between sounds and letters of the English language to represent sounds when writing"
+    },
+    {
+     "code": "ELPS W.B",
+     "text": "write text following conventional spelling patterns and rules"
+    },
+    {
+     "code": "ELPS W.C",
+     "text": "write using a combination of high-frequency words and content-area vocabulary"
+    },
+    {
+     "code": "ELPS W.D",
+     "text": "write content-area texts using a variety of sentence lengths and types and transition words"
+    },
+    {
+     "code": "ELPS W.E",
+     "text": "write content-area specific text using conventions such as capitalization, punctuation, and abbreviations and grammatical structures such as subject-verb agreement, verb tense, possessive case, and contractions"
+    },
+    {
+     "code": "ELPS W.F",
+     "text": "write to narrate, describe, explain, respond, or justify with supporting details and evidence using appropriate content, style, register, and conventions for specific purpose and audience"
+    }
+   ]
+  }
+ ]
+}

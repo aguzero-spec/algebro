@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Security: this page may only run its own scripts and only talk to Claude. -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self';
+                 connect-src 'self' https://api.anthropic.com; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>AlgeBro Lesson Packet Builder (web preview)</title>
+  <link rel="icon" href="icon.png">
+  <link rel="stylesheet" href="css/app.css?v=0.4.0">
+  <link rel="stylesheet" href="css/web.css?v=0.4.0">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Lesson Packet Builder</h1>
+    <span class="muted">Web preview 0.4.0</span>
+  </header>
+  <div class="banner warn">
+    Early preview of the web version: it writes one lesson plan to test the connection to Claude.
+    The full app is coming.
+  </div>
+
+  <main>
+    <p class="privacy-note">Do not enter student names or student records. Your lesson outline and options
+      are sent to Claude to write the packet; nothing is sent anywhere else.</p>
+
+    <form id="proof-form" class="card" autocomplete="off">
+      <h2>Claude API key</h2>
+      <div class="row key-entry">
+        <input id="api-key" type="password" placeholder="sk-ant-…" spellcheck="false" autocomplete="off">
+      </div>
+      <p class="hint">Kept only in this browser tab and forgotten when you close it.
+        Sent only to Claude (api.anthropic.com).</p>
+
+      <h2>Your lesson outline</h2>
+      <textarea id="seed" rows="8" placeholder="Goal, main activities with timing, anything to keep exactly…"></textarea>
+      <div class="grid">
+        <label>Grade level <input id="grade" placeholder="e.g. 6th grade"></label>
+        <label>Subject <input id="subject" placeholder="e.g. Math"></label>
+        <label class="wide">Topic <input id="topic" placeholder="e.g. Dividing fractions"></label>
+        <label>Number of days <input id="days" type="number" min="1" max="20" value="1"></label>
+        <label>Minutes per class <input id="minutes" type="number" min="10" max="240" value="50"></label>
+      </div>
+      <div class="actions">
+        <button type="submit" class="button" id="go">Write a lesson plan</button>
+        <button type="button" class="button secondary" id="stop" hidden>Stop</button>
+        <span id="status" class="muted" aria-live="polite"></span>
+      </div>
+    </form>
+
+    <section class="card" id="result-card" hidden>
+      <h2>Lesson plan</h2>
+      <p id="error" class="banner error" hidden></p>
+      <pre id="result" class="result"></pre>
+      <p id="details" class="hint"></p>
+    </section>
+  </main>
+
+  <script type="module" src="js/proof.js?v=0.4.0"></script>
+</body>
+</html>

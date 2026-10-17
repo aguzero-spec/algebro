@@ -1,0 +1,13 @@
+/* Additions for the web version (the shared look comes from app.css, the desktop app's style.css). */
+
+.result {
+  white-space: pre-wrap;
+  font: 14px/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px;
+  max-height: 70vh;
+  overflow: auto;
+  margin: 0;
+}

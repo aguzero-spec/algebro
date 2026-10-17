@@ -1,0 +1,100 @@
+{
+ "version": "0.4.0",
+ "config": {
+  "model": "claude-opus-5-5",
+  "max_output_tokens": 50000,
+  "effort": "medium",
+  "temperature": null,
+  "refusal_fallback": true,
+  "prices": {
+   "claude-sonnet-5-5": {
+    "input": 2.0,
+    "output": 10.0
+   },
+   "claude-opus-5-5": {
+    "input": 4.0,
+    "output": 20.0
+   },
+   "claude-haiku-5-5": {
+    "input": 0.1,
+    "output": 0.5
+   }
+  },
+  "max_upload_mb": 10,
+  "max_seed_characters": 60000,
+  "export_style": {
+   "font": "Arial",
+   "pdf_font": "Arial",
+   "body_size_pt": 11,
+   "title_size_pt": 22,
+   "heading_color": "1F3864",
+   "table_header_color": "D9E2F3",
+   "margins_inches": 1.0,
+   "new_page_per_section": true,
+   "include_review_note": false
+  }
+ },
+ "sections": [
+  {
+   "id": "lesson_plan",
+   "name": "Lesson Plan",
+   "prompt_file": "lesson_plan.txt",
+   "on_by_default": true,
+   "order": 1
+  },
+  {
+   "id": "worksheet",
+   "name": "Student Worksheet",
+   "prompt_file": "worksheet.txt",
+   "on_by_default": true,
+   "order": 2
+  },
+  {
+   "id": "quiz",
+   "name": "Quiz and Answer Key",
+   "prompt_file": "quiz.txt",
+   "on_by_default": true,
+   "order": 3
+  },
+  {
+   "id": "vocabulary",
+   "name": "Vocabulary List",
+   "prompt_file": "vocabulary.txt",
+   "on_by_default": true,
+   "order": 4
+  },
+  {
+   "id": "differentiation",
+   "name": "Differentiated Versions",
+   "prompt_file": "differentiation.txt",
+   "on_by_default": true,
+   "order": 5
+  },
+  {
+   "id": "slides",
+   "name": "Presentation Slides",
+   "prompt_file": "slides.txt",
+   "on_by_default": false,
+   "order": 6
+  },
+  {
+   "id": "student_notes",
+   "name": "Student Notes",
+   "prompt_file": "student_notes.txt",
+   "on_by_default": false,
+   "order": 7,
+   "follows": "slides"
+  }
+ ],
+ "prompts": {
+  "differentiation.txt": "Write differentiated supports for this lesson plan:\n\n<lesson_plan>\n{{lesson_plan}}\n</lesson_plan>\n\nUse these headings:\n1. \"Support for Struggling Learners\": scaffolds, sentence frames, simplified tasks, and checkpoints, tied to specific activities in the plan.\n2. \"Extension for Advanced Learners\": deeper or more open-ended tasks for the same activities.\n3. Only if the class includes emergent bilingual students: \"Supports for Emergent Bilingual Students\": for the key activities, supports for the beginning, intermediate, and advanced/high intermediate proficiency levels, each citing the ELPS it develops.\n\nIf the class notes mention other needs, address them directly.\n",
+  "lesson_plan.txt": "Write the full lesson plan.\n\nInclude:\n- Learning objectives as student-friendly \"I can\" statements, each citing the TEKS it addresses\n- If the class includes emergent bilingual students, a language objective for each day, citing the ELPS it builds on\n- Materials and preparation\n- A day-by-day schedule. For each day, a table of timed activities (minutes, activity, what the teacher does, what students do) that adds up to the class length.\n- Checks for understanding during the lesson\n- Assessment: how the teacher will know students met the objectives\n",
+  "quiz.txt": "Write a short STAAR-style quiz (8-10 items) that checks the objectives of this lesson plan:\n\n<lesson_plan>\n{{lesson_plan}}\n</lesson_plan>\n\nModel the items on the item types students see on the STAAR test, adapted for paper:\n- Multiple choice with four answer choices. Label choices A, B, C, D on odd-numbered items and F, G, H, J on even-numbered items, as STAAR does.\n- At least one multiselect item (\"Select TWO correct answers.\").\n- At least one item where students write their own answer in a box (for example a number or an expression).\n- Where it fits the content, one table item where students mark the correct cell in each row.\n\nNumber the items and label each one with the TEKS it assesses. Use clear, grade-appropriate wording and realistic contexts; avoid trick questions.\n\nThen add an \"Answer Key\" with the correct answer, the TEKS, and a one-line explanation for each item.\n",
+  "revise.txt": "Here is the current \"{{section_name}}\" section of this lesson packet. The teacher may have edited it by hand:\n\n<current_section>\n{{current_section}}\n</current_section>\n\nRevise it as the teacher asks:\n\n<change_request>\n{{change_request}}\n</change_request>\n\nChange only what the request asks for. Keep everything else exactly as it is, including the teacher's own edits, wording, order, and formatting. Return the complete revised section in Markdown, with no comments about what you changed.\n",
+  "slides.txt": "Write a slide deck the teacher can project while teaching this lesson plan:\n\n<lesson_plan>\n{{lesson_plan}}\n</lesson_plan>\n\nWrite the slides for the students in the room: short, clear, and at their reading level. Format every slide exactly like this:\n\n## Slide title\n- 3 to 6 short bullet points, about 12 words or fewer each\nNotes: one or two sentences for the teacher about what to say or do. These become the speaker notes.\n\nInclude a title slide, the \"I can\" objectives (with their TEKS codes), a warm-up, the key ideas with worked examples, practice prompts, and an exit ticket. For multi-day lessons, start each day with a slide like \"## Day 2: ...\". Use a small table only when it really helps. Aim for 10 to 20 slides.\n\nIf Spanish support is requested above, put the Spanish version of key terms and directions in parentheses after the English.\n",
+  "student_notes.txt": "Write a student notes handout (guided notes) that students fill in while the teacher presents these slides:\n\n<slides>\n{{slides}}\n</slides>\n\nThe notes must follow the slides exactly, in the same order. For every slide after the title slide, start a heading with the same title as the slide:\n\n## Slide title\n\nUnder each heading:\n- Restate the slide's key points as short sentences with the important word, number, or step replaced by a blank (____), so students listen and write it in. One to three blanks per slide; never blank out every word.\n- For a worked example, show the problem and leave numbered steps with blanks or workspace lines for students to copy the teacher's work.\n- For a practice or \"Try it\" slide, give the problem with room to work and a line for the answer.\n- For vocabulary, give the term with a blank for the definition, or the reverse.\nDo not include the teacher's speaker notes; students never see them.\n\nWrite for students at their reading level. Start with a title, a line for \"Name: ________ Date: ________\", and one sentence of directions. End with a short \"Summary: In my own words…\" box using two or three blank lines.\n\nAfter the student pages, add \"Answer Key (teacher only)\" listing the answer for each blank, grouped by slide title.\n\nIf Spanish support is requested above, give the directions in English followed by Spanish in italics, and put the Spanish term in parentheses after each key English term. Keep all math notation unchanged.\n",
+  "system.txt": "You are an experienced Texas public school teacher and curriculum designer helping a colleague turn their lesson outline into a complete, ready-to-teach lesson packet for a Texas classroom.\n\nThe teacher's lesson outline and their choices are below. The outline may be a few rough lines or a complete existing lesson plan. Stay faithful to it: keep its goals, approach, and any activities that work, and fill in what is missing. Match the grade level in vocabulary, reading level, and pacing. Make every timed activity fit the class length and number of days given.\n\nAlign the packet to the Texas Essential Knowledge and Skills (TEKS). When TEKS are listed below, that is their official wording: align the objectives, activities, and assessment to exactly those student expectations and cite them by code (for example \"TEKS 6.3A\"). Do not cite any other TEKS codes. If no TEKS are listed, choose fitting ones for the grade and subject, cite them, and mark them \"suggested TEKS, please verify\".\n\nWrite in Markdown using headings, bullet lists, numbered lists, and tables where they help. Write only the requested section: no greeting, no preamble, no closing remarks. Do not invent student names. If something important is unclear from the outline, make a sensible choice and note it briefly in a \"Teacher note\" (refer to it as \"your outline\").\n\n## Teacher's choices\n- Grade level: {{grade_level}}\n- Subject: {{subject}}\n- Topic: {{topic}}\n- Number of days: {{num_days}}\n- Class length: {{class_minutes}} minutes\n- Notes about the class: {{notes}}\n\n## TEKS (official wording)\n{{teks}}\n\n## Other standards or district notes from the teacher\n{{standards}}\n\n## Emergent bilingual students (ELPS)\n{{elps}}\n\n## Spanish support\n{{spanish}}\n\n## Teacher's lesson outline\n<outline>\n{{seed}}\n</outline>\n",
+  "vocabulary.txt": "Write a vocabulary list for this lesson plan:\n\n<lesson_plan>\n{{lesson_plan}}\n</lesson_plan>\n\nChoose the 8-12 most important terms. Present them as a table with columns: Term, Student-friendly definition, Example sentence. Keep definitions at the students' reading level.\n\nIf Spanish support is requested above, add a \"Spanish\" column with the Spanish term, and mark true cognates (for example reciprocal / recíproco) with \"(cognate)\".\n",
+  "worksheet.txt": "Write a student worksheet that goes with this lesson plan:\n\n<lesson_plan>\n{{lesson_plan}}\n</lesson_plan>\n\nStart with a title and short directions written for students. Include a mix of question types that build from recall to application. Leave clear blank lines (____) for answers. End with a short answer key under the heading \"Answer Key (teacher only)\".\n\nIf Spanish support is requested above, give each set of directions in English followed by Spanish in italics. Keep the problems themselves and all math notation the same in both.\n"
+ }
+}
