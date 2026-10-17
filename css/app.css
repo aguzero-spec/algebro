@@ -230,10 +230,13 @@ a { color: var(--accent); }
 .key-entry .row { flex-wrap: nowrap; }
 .key-entry input { flex: 1; font-family: ui-monospace, Menlo, monospace; }
 .key-result { margin: 6px 0 0; min-height: 1.4em; }
+.key-entry .check-row { display: flex; margin-top: 8px; font-size: 14px; }
 .key-result.ok { color: var(--ok-text); }
 .key-result.error { color: var(--error-text); }
 .button.danger { color: var(--error-text); border-color: var(--error-text); }
 [hidden] { display: none !important; }
+/* The same page serves the desktop apps and the web version (app.js sets data-platform). */
+html:not([data-platform="web"]) .web-only, html[data-platform="web"] .desktop-only { display: none !important; }
 
 /* ---- Usage page ---- */
 

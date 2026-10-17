@@ -1,64 +1,379 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-platform="web" data-build="a95f5dbc98">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Security: this page may only run its own scripts and only talk to Claude. -->
-  <meta http-equiv="Content-Security-Policy"
-        content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self';
-                 connect-src 'self' https://api.anthropic.com; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.anthropic.com; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
-  <title>AlgeBro Lesson Packet Builder (web preview)</title>
+  <title>AlgeBro · Lesson Packet Builder</title>
+  <meta name="description" content="Turns a lesson outline into a full TEKS-aligned lesson packet with Claude.">
   <link rel="icon" href="icon.png">
-  <link rel="stylesheet" href="css/app.css?v=0.4.0">
-  <link rel="stylesheet" href="css/web.css?v=0.4.0">
+  <link rel="stylesheet" href="css/app.css?v=a95f5dbc98">
+  <link rel="stylesheet" href="css/web.css?v=a95f5dbc98">
 </head>
 <body>
   <header class="topbar">
     <h1>Lesson Packet Builder</h1>
-    <span class="muted">Web preview 0.4.0</span>
+    <nav id="nav">
+      <button data-view="packet" class="active">Packet</button>
+      <button data-view="saved">Saved</button>
+      <button data-view="usage">Usage</button>
+      <button data-view="settings">Settings</button>
+      <button data-view="about">About</button>
+    </nav>
   </header>
-  <div class="banner warn">
-    Early preview of the web version: it writes one lesson plan to test the connection to Claude.
-    The full app is coming.
+
+  <div id="mock-banner" class="banner warn" hidden>
+    MOCK mode is on: the app returns sample text and does not call Claude or cost anything.
   </div>
+  <div id="error-banner" class="banner error" hidden></div>
 
   <main>
-    <p class="privacy-note">Do not enter student names or student records. Your lesson outline and options
-      are sent to Claude to write the packet; nothing is sent anywhere else.</p>
+    <!-- ===== Welcome (first run: shown until a key is saved) ===== -->
+    <section id="view-welcome" class="view" hidden>
+      <h2>Welcome to Lesson Packet Builder</h2>
+      <p>Give this app a lesson outline or a lesson plan you already have, choose a few options, and it writes a full
+         lesson packet: a detailed lesson plan, student worksheet, quiz with answer key, vocabulary list,
+         and versions for struggling and advanced learners. You can edit everything, save it, and
+         export it to Word, PDF, or PowerPoint.</p>
+      <p>The writing is done by <strong>Claude</strong>, an AI from Anthropic. The app uses
+         <strong>your own Claude account</strong>, so any cost is billed to you by Anthropic, usually
+         well under a dollar per packet. Your packets stay on this computer.</p>
 
-    <form id="proof-form" class="card" autocomplete="off">
-      <h2>Claude API key</h2>
-      <div class="row key-entry">
-        <input id="api-key" type="password" placeholder="sk-ant-…" spellcheck="false" autocomplete="off">
+      <div class="card">
+        <h2>Step 1: Add your Claude API key</h2>
+        <ol class="steps">
+          <li>Go to <a href="https://platform.claude.com" target="_blank" rel="noopener">platform.claude.com</a> and sign up or log in.</li>
+          <li>Add some credit under <strong>Billing</strong> (for example $10).</li>
+          <li>Open <strong>API Keys</strong>, click <strong>Create Key</strong>, name it (e.g. “Lesson Packet Builder”), and copy it.</li>
+          <li>Paste it below. It will be stored in <span data-win="Windows Credential Manager" data-web="this browser (only for this tab, unless you tick “Remember”)">your Mac's Keychain</span>, not in a file.</li>
+        </ol>
+        <div class="key-form" id="welcome-key-form"></div>
       </div>
-      <p class="hint">Kept only in this browser tab and forgotten when you close it.
-        Sent only to Claude (api.anthropic.com).</p>
 
-      <h2>Your lesson outline</h2>
-      <textarea id="seed" rows="8" placeholder="Goal, main activities with timing, anything to keep exactly…"></textarea>
-      <div class="grid">
-        <label>Grade level <input id="grade" placeholder="e.g. 6th grade"></label>
-        <label>Subject <input id="subject" placeholder="e.g. Math"></label>
-        <label class="wide">Topic <input id="topic" placeholder="e.g. Dividing fractions"></label>
-        <label>Number of days <input id="days" type="number" min="1" max="20" value="1"></label>
-        <label>Minutes per class <input id="minutes" type="number" min="10" max="240" value="50"></label>
+      <div class="card" id="welcome-limit" hidden>
+        <h2>Step 2: Set a monthly spending limit</h2>
+        <p>A limit stops charges from ever going higher than you expect.</p>
+        <ol class="steps">
+          <li>At <a href="https://platform.claude.com/settings/limits" target="_blank" rel="noopener">platform.claude.com</a>, open <strong>Settings › Limits</strong>.</li>
+          <li>Under <strong>Spend limits</strong>, click <strong>Set spend limit</strong> (or <strong>Change Limit</strong>).</li>
+          <li>Enter a monthly amount you're comfortable with, such as $10, and save.</li>
+        </ol>
+        <p class="muted">Tip: if you pay with prepaid credits, leave <strong>auto-reload</strong> off under Billing; then you can never spend more than the credit you added.</p>
+        <button class="button" id="welcome-done">Start using the app</button>
       </div>
-      <div class="actions">
-        <button type="submit" class="button" id="go">Write a lesson plan</button>
-        <button type="button" class="button secondary" id="stop" hidden>Stop</button>
-        <span id="status" class="muted" aria-live="polite"></span>
-      </div>
-    </form>
+    </section>
 
-    <section class="card" id="result-card" hidden>
-      <h2>Lesson plan</h2>
-      <p id="error" class="banner error" hidden></p>
-      <pre id="result" class="result"></pre>
-      <p id="details" class="hint"></p>
+    <!-- ===== Packet (main screen) ===== -->
+    <section id="view-packet" class="view">
+      <p class="privacy-note">Do not enter student names or student records. Your lesson outline and options are sent to Claude to write the packet.</p>
+
+      <form id="packet-form" class="card" autocomplete="off">
+        <h2>1. Your lesson outline</h2>
+        <p class="muted">A rough plan or an existing lesson. Claude builds the full packet from it.
+          Type or paste it below, or upload a file; uploaded text appears in the box so you can check it.</p>
+        <details class="tune-help outline-help">
+          <summary>What should I include?</summary>
+          <p>Anything from a few lines to a couple of pages works. The more of your own lesson you include,
+             the more closely the packet follows it. Most helpful, in this order:</p>
+          <ol>
+            <li><strong>The goal</strong>: what students should understand or be able to do.</li>
+            <li><strong>The main activities</strong>, one line each, with rough timing (and which day, if more than one).</li>
+            <li><strong>Anything to keep exactly</strong>: specific problems, texts, examples, or vocabulary.</li>
+            <li><strong>Required routines</strong>: your district's lesson cycle (e.g. HISD NES), warm-ups, exit tickets.</li>
+            <li><strong>How students show what they learned</strong>: exit ticket, project, quiz.</li>
+          </ol>
+          <p>No need to repeat the grade, TEKS, number of days, or class notes: those go in the boxes below.
+             Leave out student names.</p>
+          <p><strong>Example outline:</strong></p>
+          <pre class="outline-example" id="outline-example">Topic: Dividing fractions by fractions
+Goal: Students understand why dividing by a fraction is the same as multiplying by its reciprocal, and divide fractions and mixed numbers fluently.
+
+Day 1
+- Warm-up (5 min): three problems multiplying fractions
+- Model (15 min): "How many 1/4s are in 3?" with fraction strips; connect it to 3 × 4
+- Partner practice (20 min): six problems, first with models, then with the rule
+- Exit ticket (10 min): 2/3 ÷ 1/6 and one word problem
+
+Day 2
+- Mixed numbers: change to improper fractions first (2 1/2 ÷ 3/4)
+- Word problems with recipes and ribbon lengths
+- Review game, then a short quiz
+
+Keep: the fraction strips, and the problem "How many 3/4-cup scoops are in 6 cups of flour?"
+Students show learning by explaining one problem two ways: with a model and with the rule.</pre>
+          <button type="button" class="button secondary small" id="insert-example">Insert this example</button>
+        </details>
+        <div class="row">
+          <label class="button secondary">
+            Choose file…
+            <input type="file" id="seed-file" accept=".docx,.pdf,.txt,.md" hidden>
+          </label>
+          <span id="seed-info" class="muted">.docx, .pdf, .txt, or .md</span>
+        </div>
+        <textarea id="seed-text" rows="12" placeholder="Goal: …&#10;Day 1: warm-up, model, partner practice, exit ticket…&#10;Keep: …&#10;&#10;(or paste a lesson plan you already have)"></textarea>
+        <div class="hint" id="seed-count"></div>
+
+        <h2>2. Options</h2>
+        <div class="grid">
+          <label>Grade level
+            <input id="opt-grade" list="grade-list" placeholder="e.g. 7th grade" required>
+            <datalist id="grade-list">
+              <option>Kindergarten</option><option>1st grade</option><option>2nd grade</option>
+              <option>3rd grade</option><option>4th grade</option><option>5th grade</option>
+              <option>6th grade</option><option>7th grade</option><option>8th grade</option>
+              <option>Algebra I</option><option>Geometry</option><option>Algebra II</option>
+              <option>English I</option><option>English II</option><option>Biology</option>
+              <option>Chemistry</option><option>Physics</option><option>U.S. History</option>
+              <option>World Geography</option><option>9th grade</option><option>10th grade</option>
+              <option>11th grade</option><option>12th grade</option>
+            </datalist>
+          </label>
+          <label>Subject
+            <input id="opt-subject" placeholder="e.g. Math" required>
+          </label>
+          <label class="wide">Topic
+            <input id="opt-topic" placeholder="e.g. Solving two-step equations" required>
+          </label>
+          <div class="wide teks-picker">
+            <div class="teks-head">TEKS <span class="muted">(Texas Essential Knowledge and Skills, optional)</span></div>
+            <div class="row teks-controls">
+              <select id="teks-course"><option value="">Choose a course…</option></select>
+              <input id="teks-search" type="search" placeholder="Search, e.g. “reciprocal” or “6.3”">
+            </div>
+            <div id="teks-selected" class="chips" aria-live="polite"></div>
+            <div id="teks-list" class="teks-list" hidden></div>
+            <p id="teks-source" class="hint"></p>
+          </div>
+          <label class="wide">Other standards or district notes <span class="muted">(optional)</span>
+            <textarea id="opt-standards" rows="2" placeholder="e.g. HISD NES lesson cycle; campus focus on academic vocabulary"></textarea>
+          </label>
+          <label>Number of days
+            <input id="opt-days" type="number" min="1" max="20" value="1" required>
+          </label>
+          <label>Class length (minutes)
+            <input id="opt-minutes" type="number" min="10" max="240" value="50" required>
+          </label>
+          <label class="wide">Notes about the class <span class="muted">(optional, no names)</span>
+            <textarea id="opt-notes" rows="2" placeholder="e.g. 1:1 laptops; many students below grade level in reading"></textarea>
+          </label>
+          <label class="wide check-row">
+            <input type="checkbox" id="opt-elps">
+            <span>Class includes <strong>emergent bilingual (EB)</strong> students: add <strong>ELPS</strong>-aligned language supports and objectives</span>
+          </label>
+          <label class="wide check-row">
+            <input type="checkbox" id="opt-spanish">
+            <span><strong>Spanish support:</strong> Spanish directions, Spanish vocabulary, and cognates</span>
+          </label>
+        </div>
+
+        <h2>3. Sections</h2>
+        <div id="section-choices" class="checks"></div>
+        <p class="hint">Student Notes are fill-in-the-blank notes that follow the slides, one part per slide.
+          Tick Presentation Slides too, so they match (they're written after the slides).</p>
+
+        <div class="actions">
+          <button type="submit" class="button" id="generate-btn">Generate packet</button>
+          <span id="progress" class="muted" aria-live="polite"></span>
+        </div>
+      </form>
+
+      <!-- The generated packet. Filled in by app.js. -->
+      <div id="packet" hidden>
+        <div class="card save-bar">
+          <label for="packet-title" class="muted">Packet title</label>
+          <div class="row">
+            <input id="packet-title" placeholder="Packet title">
+            <button type="button" class="button" id="save-btn">Save</button>
+          </div>
+          <p id="save-status" class="hint"></p>
+
+          <div class="row export-row">
+            <label>Export
+              <select id="export-scope"></select>
+            </label>
+            <label>as
+              <select id="export-format">
+                <option value="docx">Word (.docx)</option>
+                <option value="pdf">PDF</option>
+                <option value="pptx">PowerPoint (.pptx)</option>
+                <option value="md">Markdown (.md) – plain text, for other apps</option>
+              </select>
+            </label>
+            <button type="button" class="button secondary" id="export-btn">Export…</button>
+          </div>
+          <p id="export-hint" class="hint"></p>
+          <p id="export-result" class="hint" aria-live="polite"></p>
+
+          <div class="row add-row" id="add-section-row">
+            <label>Add a section
+              <select id="add-section"></select>
+            </label>
+            <button type="button" class="button secondary" id="add-section-btn">Write it</button>
+          </div>
+        </div>
+        <p class="review-note"><strong>Review for accuracy.</strong> Claude can make mistakes.
+          Check facts, answer keys, and standards before using this packet with students.</p>
+        <div id="packet-sections"></div>
+        <p id="packet-total" class="muted"></p>
+      </div>
+
+      <template id="section-template">
+        <article class="card section">
+          <div class="section-head">
+            <h3 class="section-name"></h3>
+            <button type="button" class="button secondary small toggle-preview">Preview</button>
+          </div>
+          <p class="section-warning banner warn" hidden></p>
+          <p class="section-error banner error" hidden></p>
+          <p class="section-busy muted" hidden>Writing…</p>
+          <textarea class="section-text" rows="18" spellcheck="true"></textarea>
+          <div class="section-preview preview" hidden></div>
+          <div class="tune">
+            <label class="tune-label">Quick change <span class="hint">Claude edits the text above, keeping your own changes</span></label>
+            <div class="row tune-row">
+              <input class="revise-notes" placeholder="e.g. make question 3 harder; use pizza instead of cookies in the examples">
+              <button type="button" class="button secondary revise-btn">Revise</button>
+            </div>
+            <label class="tune-label">Section instructions <span class="hint">saved with this packet; followed every time you regenerate</span></label>
+            <div class="row tune-row">
+              <textarea class="regen-notes" rows="2" placeholder="e.g. 2 days, not 3 · add a group activity on Day 1 · use cooking examples · end with a 3-question exit ticket"></textarea>
+              <button type="button" class="button secondary regen-btn">Regenerate from scratch</button>
+            </div>
+          </div>
+          <details class="tune-help">
+            <summary>How do these work?</summary>
+            <ul>
+              <li><strong>Small fix?</strong> Click <strong>Edit</strong> above and type it yourself. Free and instant.</li>
+              <li><strong>Quick change → Revise:</strong> Claude edits the current text, changing only what you ask and keeping everything else, including your own edits. One-time: the box clears afterwards.</li>
+              <li><strong>Section instructions → Regenerate from scratch:</strong> Claude writes the whole section again, following these instructions. They're saved with the packet. Your manual edits are replaced.</li>
+              <li>Each Revise or Regenerate is one request to Claude (cost shown below). Not happy? Use <strong>Undo last change</strong>.</li>
+            </ul>
+          </details>
+          <p class="section-meta hint"></p>
+          <button type="button" class="link-button undo-btn" hidden>Undo last change</button>
+        </article>
+      </template>
+    </section>
+
+    <!-- ===== Saved packets ===== -->
+    <section id="view-saved" class="view" hidden>
+      <h2>Saved packets</h2>
+      <p id="saved-empty" class="muted" hidden>No saved packets yet. Generate one on the Packet page and click Save.</p>
+      <div id="saved-list"></div>
+      <template id="saved-row-template">
+        <div class="card saved-row">
+          <div>
+            <div class="saved-title"></div>
+            <div class="saved-meta hint"></div>
+          </div>
+          <div class="row">
+            <button type="button" class="button open-btn">Open</button>
+            <button type="button" class="button secondary danger delete-btn">Delete</button>
+          </div>
+        </div>
+      </template>
+    </section>
+
+    <!-- ===== Usage ===== -->
+    <section id="view-usage" class="view" hidden>
+      <h2>Usage</h2>
+      <div class="card">
+        <div class="usage-big"><span id="usage-month-cost">$0.00</span>
+          <span class="muted">estimated this month (<span id="usage-month-name"></span>)</span></div>
+        <p id="usage-month-detail" class="muted"></p>
+        <div id="usage-models"></div>
+      </div>
+      <div class="card">
+        <h2>By month</h2>
+        <table class="usage-table">
+          <thead><tr><th>Month</th><th>Sections written</th><th>Tokens in</th><th>Tokens out</th><th>Estimated cost</th></tr></thead>
+          <tbody id="usage-history"></tbody>
+        </table>
+        <p id="usage-empty" class="muted" hidden>No usage yet. Costs appear here after your first real (non-MOCK) generation.</p>
+      </div>
+      <p class="muted">These are estimates from the prices in <code>config.yaml</code>. Your actual bill is at
+        <a href="https://platform.claude.com" target="_blank" rel="noopener">platform.claude.com</a> (open Usage or Billing).
+        The log on this computer keeps only token counts and costs, never packet content.
+        <button type="button" class="link-button desktop-only" id="usage-open-folder">Show the log file</button></p>
+    </section>
+
+    <!-- ===== Settings ===== -->
+    <section id="view-settings" class="view" hidden>
+      <h2>Settings</h2>
+      <div class="card">
+        <h2>Claude API key</h2>
+        <p id="settings-key-status" class="muted"></p>
+        <div class="key-form" id="settings-key-form"></div>
+        <p><button class="button secondary danger" id="remove-key">Remove key from this computer</button></p>
+        <p class="muted">To check spending or set a monthly limit, visit
+          <a href="https://platform.claude.com/settings/limits" target="_blank" rel="noopener">platform.claude.com › Settings › Limits</a>.</p>
+      </div>
+
+      <div class="card web-only">
+        <h2>Your saved packets</h2>
+        <p>Saved packets are kept in this browser on this computer. Clearing your browser's data (or using
+           another computer or browser) means they're not there, so download a backup now and then.
+           A backup is one file holding every saved packet; restore it here or in another browser.
+           Packets saved by the Mac or Windows app (their .json files) can be restored here too.</p>
+        <div class="row">
+          <button type="button" class="button secondary" id="backup-download">Download backup</button>
+          <button type="button" class="button secondary" id="backup-restore">Restore from a backup…</button>
+          <input type="file" id="backup-file" accept=".json,application/json" hidden>
+        </div>
+        <p id="backup-result" class="hint" aria-live="polite"></p>
+      </div>
+
+      <div class="card desktop-only">
+        <h2>Prompts and settings files</h2>
+        <p>The instructions sent to Claude are plain text files you can edit with TextEdit.
+           Changes apply the next time you generate. <code>config.yaml</code> (model, length, prices,
+           Word styling) and <code>sections.yaml</code> (which sections exist) are in the data folder.</p>
+        <div class="row">
+          <button type="button" class="button secondary" id="open-prompts">Open prompts folder</button>
+          <button type="button" class="button secondary" id="open-data">Open data folder</button>
+          <button type="button" class="button secondary danger" id="reset-prompts">Reset prompts to defaults</button>
+        </div>
+        <p id="prompts-result" class="hint" aria-live="polite"></p>
+        <p id="prompts-outdated" class="banner warn" hidden></p>
+      </div>
+    </section>
+
+    <!-- Reused by the welcome and settings screens -->
+    <template id="key-form-template">
+      <form class="key-entry">
+        <div class="row">
+          <input type="password" class="key-input" placeholder="sk-ant-…" autocomplete="off" spellcheck="false" required>
+          <button type="submit" class="button">Test and save key</button>
+        </div>
+        <label class="check-row web-only">
+          <input type="checkbox" class="key-remember">
+          <span>Remember my key on this computer. <span class="muted">Leave this unticked on a shared or
+            school computer: then the key is forgotten when you close this tab.</span></span>
+        </label>
+        <p class="key-result" aria-live="polite"></p>
+      </form>
+    </template>
+
+    <!-- ===== About ===== -->
+    <section id="view-about" class="view" hidden>
+      <h2>About</h2>
+      <p>Lesson Packet Builder turns an existing lesson plan into a full lesson packet using Claude.
+         Everything is stored on this computer; the only thing sent out is the request to Claude.</p>
+      <p class="web-only">This is the web version: it runs in your browser, with no server of its own. Your key,
+         outline, and packets go only to Claude (api.anthropic.com), straight from this browser.
+         Prefer an app? The Mac and Windows versions do the same.</p>
+      <p><strong>Texas edition.</strong> Packets are aligned to the TEKS, with the official TEA wording built in
+         for Grade 6–8 Mathematics (including the 2025 Advanced Mathematics courses), ELPS (adopted 2024)
+         supports for emergent bilingual students, STAAR-style quizzes, and optional Spanish support.</p>
+      <dl class="facts">
+        <dt>Version</dt><dd id="about-version">-</dd>
+        <dt>Model</dt><dd id="about-model">-</dd>
+        <dt>Data folder</dt><dd id="about-data-dir">-</dd>
+      </dl>
     </section>
   </main>
 
-  <script type="module" src="js/proof.js?v=0.4.0"></script>
+  <script type="module" src="js/web_boot.js?v=a95f5dbc98"></script>
 </body>
 </html>
