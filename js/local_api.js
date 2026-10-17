@@ -3,11 +3,11 @@
 // those calls come here instead and are answered inside the browser. Same checks and
 // messages as server.py: keep them in step.
 
-import { GenerationError, generate as claudeGenerate, testKey } from "./claude.js?v=8b2ec44a96";
-import { ExportError, build as buildExport, defaultTitle, toMarkdown } from "./export.js?v=8b2ec44a96";
-import { build as buildPrompt } from "./prompts.js?v=8b2ec44a96";
-import { StorageError, db, keyStore } from "./store.js?v=8b2ec44a96";
-import { loadScript } from "./vendor.js?v=8b2ec44a96";
+import { GenerationError, generate as claudeGenerate, testKey } from "./claude.js?v=c70461b0d2";
+import { ExportError, build as buildExport, defaultTitle, toMarkdown } from "./export.js?v=c70461b0d2";
+import { build as buildPrompt } from "./prompts.js?v=c70461b0d2";
+import { StorageError, db, keyStore } from "./store.js?v=c70461b0d2";
+import { loadScript } from "./vendor.js?v=c70461b0d2";
 
 // Packet ids become storage keys and file names, so only allow safe characters.
 const SAFE_ID = /^[A-Za-z0-9_-]{1,120}$/;
@@ -278,15 +278,20 @@ async function readSeed(body) {
     throw new UserError("The file didn't arrive intact. Please try again.");
   }
   if (bytes.length > maxMb * 1024 * 1024) throw new UserError(`“${name}” is larger than ${maxMb} MB.`);
+  const limit = config().max_seed_characters || 60000;
   let raw;
   try {
-    raw = ext === ".docx" ? await readDocx(bytes) : ext === ".pdf" ? await readPdf(bytes) : decodeText(bytes);
+    raw = ext === ".docx" ? await readDocx(bytes) : ext === ".pdf" ? await readPdf(bytes, limit) : decodeText(bytes);
   } catch (e) {
     if (e instanceof UserError) throw e;
     throw new UserError(`Couldn't read “${name}”. It may be damaged or not really a ${ext} file. `
       + "Try opening it and pasting the text instead.");
   }
-  const text = tidy(raw);
+  const text = raw.length > limit * 3 ? raw : tidy(raw); // (no need to tidy a file that's far too long)
+  if (text.length > limit) { // more than an outline can use (and a huge text box would slow the page down)
+    throw new UserError(`“${name}” has more text than a lesson outline can hold (over ${limit.toLocaleString()} characters). `
+      + "Open it, copy the part for this lesson, and paste it into the box.");
+  }
   if (!text) {
     throw new UserError(`No text was found in “${name}”.`
       + (ext === ".pdf" ? " It may be a scanned image; copy and paste the text instead." : ""));
@@ -330,10 +335,26 @@ async function readDocx(bytes) {
 }
 
 // PDF: the text of every page, read by pdf.js in a background worker.
-async function readPdf(bytes) {
+// Stops once there's clearly more text than an outline can use.
+async function readPdf(bytes, limit) {
   const pdfjs = await import("../vendor/pdfjs-6.4.299/pdf.min.mjs");
   pdfjs.GlobalWorkerOptions.workerSrc = new URL("../vendor/pdfjs-6.4.299/pdf.worker.min.mjs", import.meta.url).href;
   const task = pdfjs.getDocument({ data: bytes, isEvalSupported: false, disableFontFace: true });
+  // A damaged or booby-trapped PDF can keep the reader busy for minutes: give up after 45 seconds.
+  const timer = setTimeout(() => task.destroy(), 45_000);
+  try {
+    return await readPdfPages(task, limit);
+  } catch (e) {
+    if (task.destroyed) {
+      throw new UserError("This PDF is taking too long to read. Open it, copy the text, and paste it in.");
+    }
+    throw e;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function readPdfPages(task, limit) {
   let pdf;
   try {
     pdf = await task.promise;
@@ -344,9 +365,12 @@ async function readPdf(bytes) {
     throw e;
   }
   const pages = [];
-  for (let n = 1; n <= pdf.numPages; n++) {
+  let total = 0;
+  for (let n = 1; n <= pdf.numPages && total <= limit * 2; n++) {
     const content = await (await pdf.getPage(n)).getTextContent();
-    pages.push(content.items.map((item) => item.str + (item.hasEOL ? "\n" : "")).join(""));
+    const text = content.items.map((item) => item.str + (item.hasEOL ? "\n" : "")).join("");
+    pages.push(text);
+    total += text.length;
   }
   await task.destroy(); // closes the file and its background worker
   return pages.join("\n\n");

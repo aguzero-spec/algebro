@@ -1,7 +1,7 @@
 // Starts the web version: connects the shared interface (app.js, the same one the desktop
 // apps use) to local_api.js instead of a server, then loads the interface.
 
-import { backupFile, download, handle, loadDefaults, restoreBackup } from "./local_api.js?v=8b2ec44a96";
+import { backupFile, download, handle, loadDefaults, restoreBackup } from "./local_api.js?v=c70461b0d2";
 
 // Refuse to run inside another website's frame (a look-alike page could trick clicks;
 // GitHub Pages can't send the header that normally prevents this).
@@ -56,7 +56,7 @@ try {
   await loadDefaults();
   await loadClassic(`js/markdown.js?v=${build}`);
   await loadClassic(`js/app.js?v=${build}`);
-  const { startSettingsEditors } = await import("./settings_ui.js?v=8b2ec44a96");
+  const { startSettingsEditors } = await import("./settings_ui.js?v=c70461b0d2");
   await startSettingsEditors();
 } catch (e) {
   const banner = document.querySelector("#error-banner");
