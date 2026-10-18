@@ -794,19 +794,88 @@ async function loadUsage() {
       ? "By model: " + u.by_model.map((b) => `${b.model} $${b.cost.toFixed(2)} (${b.calls})`).join(" · ")
       : "";
 
-    const body = $("#usage-history");
-    body.innerHTML = "";
-    for (const h of u.history) {
-      const row = body.insertRow();
-      for (const value of [monthName(h.month), h.calls, h.input_tokens.toLocaleString(), h.output_tokens.toLocaleString(), `$${h.cost.toFixed(2)}`]) {
-        row.insertCell().textContent = value;
-      }
-    }
+    USAGE = u;
+    showUsageHistory();
+    showRunningTotals();
     $("#usage-empty").hidden = u.history.length > 0;
   } catch (e) {
     showError(e.message);
   }
 }
+
+// ---- Usage by day / week / month, and running totals (added up from the daily totals) ----
+
+let USAGE = null;
+let USAGE_PERIOD = "month";
+
+const pad2 = (n) => String(n).padStart(2, "0");
+const isoDate = (d) => `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+const parseDate = (s) => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+// Weeks run Sunday to Saturday (like a US school calendar): a week is named by its Sunday.
+const weekOf = (s) => { const d = parseDate(s); d.setDate(d.getDate() - d.getDay()); return isoDate(d); };
+const money = (cost) => (cost > 0 && cost < 0.005 ? "<$0.01" : `$${cost.toFixed(2)}`);
+
+function addUp(days) {
+  const total = { calls: 0, input_tokens: 0, output_tokens: 0, cost: 0 };
+  for (const d of days) {
+    total.calls += d.calls;
+    total.input_tokens += d.input_tokens;
+    total.output_tokens += d.output_tokens;
+    total.cost += d.cost;
+  }
+  return total;
+}
+
+function showRunningTotals() {
+  const days = USAGE?.days || [];
+  const today = isoDate(new Date());
+  const tiles = {
+    today: days.filter((d) => d.date === today),
+    week: days.filter((d) => weekOf(d.date) === weekOf(today)),
+    month: days.filter((d) => d.date.slice(0, 7) === today.slice(0, 7)),
+    all: days,
+  };
+  const ids = { today: "#usage-today", week: "#usage-week", month: "#usage-month", all: "#usage-all" };
+  const details = { today: "#usage-today-detail", week: "#usage-week-detail", month: "#usage-month-tile-detail", all: "#usage-all-detail" };
+  for (const [name, list] of Object.entries(tiles)) {
+    const t = addUp(list);
+    $(ids[name]).textContent = money(t.cost);
+    $(details[name]).textContent = `${t.calls} section${t.calls === 1 ? "" : "s"}`;
+  }
+}
+
+function showUsageHistory() {
+  const days = USAGE?.days;
+  const body = $("#usage-history");
+  body.innerHTML = "";
+  let rows;
+  if (!days) { // an older app version: months only
+    rows = (USAGE?.history || []).map((h) => [monthName(h.month), h]);
+  } else {
+    const key = { day: (d) => d.date, week: (d) => weekOf(d.date), month: (d) => d.date.slice(0, 7) }[USAGE_PERIOD];
+    const groups = new Map();
+    for (const d of days) groups.set(key(d), [...(groups.get(key(d)) || []), d]);
+    const label = {
+      day: (k) => parseDate(k).toLocaleDateString([], { weekday: "short", month: "short", day: "numeric", year: "numeric" }),
+      week: (k) => `Week of ${parseDate(k).toLocaleDateString([], { month: "short", day: "numeric", year: "numeric" })}`,
+      month: (k) => monthName(k),
+    }[USAGE_PERIOD];
+    rows = [...groups.entries()].sort((a, b) => (a[0] < b[0] ? 1 : -1)).map(([k, list]) => [label(k), addUp(list)]);
+  }
+  $("#usage-period-label").textContent = { day: "Day", week: "Week", month: "Month" }[USAGE_PERIOD];
+  for (const [label, t] of rows) {
+    const row = body.insertRow();
+    for (const value of [label, t.calls, t.input_tokens.toLocaleString(), t.output_tokens.toLocaleString(), money(t.cost)]) {
+      row.insertCell().textContent = value;
+    }
+  }
+}
+
+document.querySelectorAll(".segmented button").forEach((b) => b.addEventListener("click", () => {
+  USAGE_PERIOD = b.dataset.period;
+  document.querySelectorAll(".segmented button").forEach((x) => x.classList.toggle("active", x === b));
+  showUsageHistory();
+}));
 
 function monthName(yyyyMm) {
   const [y, m] = yyyyMm.split("-").map(Number);

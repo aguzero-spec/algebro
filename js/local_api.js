@@ -3,11 +3,11 @@
 // those calls come here instead and are answered inside the browser. Same checks and
 // messages as server.py: keep them in step.
 
-import { GenerationError, generate as claudeGenerate, testKey } from "./claude.js?v=cfb25fa99c";
-import { ExportError, build as buildExport, defaultTitle, toMarkdown } from "./export.js?v=cfb25fa99c";
-import { build as buildPrompt } from "./prompts.js?v=cfb25fa99c";
-import { StorageError, db, keyStore } from "./store.js?v=cfb25fa99c";
-import { loadScript } from "./vendor.js?v=cfb25fa99c";
+import { GenerationError, generate as claudeGenerate, testKey } from "./claude.js?v=cbc5b6841e";
+import { ExportError, build as buildExport, defaultTitle, toMarkdown } from "./export.js?v=cbc5b6841e";
+import { build as buildPrompt } from "./prompts.js?v=cbc5b6841e";
+import { StorageError, db, keyStore } from "./store.js?v=cbc5b6841e";
+import { loadScript } from "./vendor.js?v=cbc5b6841e";
 
 // Packet ids become storage keys and file names, so only allow safe characters.
 const SAFE_ID = /^[A-Za-z0-9_-]{1,120}$/;
@@ -556,16 +556,20 @@ async function recordUsage(model, sectionId, usage, cost) {
 
 async function usageSummary() {
   const months = {};
+  const days = {};
   const byModel = {};
   const thisMonth = localIso().slice(0, 7);
+  const empty = () => ({ calls: 0, input_tokens: 0, output_tokens: 0, cost: 0, unpriced_calls: 0 });
   for (const row of await db.all("usage")) {
-    const month = String(row.time || "").slice(0, 7);
-    if (!/^\d{4}-\d{2}$/.test(month)) continue;
-    const m = months[month] ??= { calls: 0, input_tokens: 0, output_tokens: 0, cost: 0, unpriced_calls: 0 };
-    m.calls++;
-    m.input_tokens += (row.input_tokens || 0) + (row.cache_write_tokens || 0) + (row.cache_read_tokens || 0);
-    m.output_tokens += row.output_tokens || 0;
-    if (typeof row.estimated_cost_usd === "number") m.cost += row.estimated_cost_usd; else m.unpriced_calls++;
+    const day = String(row.time || "").slice(0, 10);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) continue;
+    const month = day.slice(0, 7);
+    for (const m of [months[month] ??= empty(), days[day] ??= empty()]) {
+      m.calls++;
+      m.input_tokens += (row.input_tokens || 0) + (row.cache_write_tokens || 0) + (row.cache_read_tokens || 0);
+      m.output_tokens += row.output_tokens || 0;
+      if (typeof row.estimated_cost_usd === "number") m.cost += row.estimated_cost_usd; else m.unpriced_calls++;
+    }
     if (month === thisMonth) {
       const b = byModel[row.model] ??= { calls: 0, cost: 0 };
       b.calls++;
@@ -579,6 +583,8 @@ async function usageSummary() {
       || { month: thisMonth, calls: 0, input_tokens: 0, output_tokens: 0, cost: 0, unpriced_calls: 0 },
     by_model: Object.entries(byModel).map(([model, v]) => ({ model, calls: v.calls, cost: Math.round(v.cost * 100) / 100 })),
     history,
+    days: Object.entries(days).sort((a, b) => (a[0] < b[0] ? 1 : -1))
+      .map(([date, v]) => ({ date, ...v, cost: Math.round(v.cost * 1e4) / 1e4 })),
     log_file: "",
   };
 }

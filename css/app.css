@@ -249,6 +249,18 @@ html:not([data-platform="web"]) .web-only, html[data-platform="web"] .desktop-on
 .usage-big { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 #usage-month-cost { font-size: 40px; font-weight: 700; }
 .usage-table { border-collapse: collapse; width: 100%; }
+.usage-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.usage-head h2 { margin: 0; }
+.segmented { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.segmented button { background: none; border: none; padding: 5px 12px; font: inherit; font-size: 14px; color: var(--muted); cursor: pointer; }
+.segmented button + button { border-left: 1px solid var(--border); }
+.segmented button.active { background: var(--accent); color: var(--accent-text); font-weight: 600; }
+.usage-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.usage-tile { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); }
+.usage-tile-label { font-size: 13px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; }
+.usage-tile-cost { font-size: 26px; font-weight: 700; }
+.usage-tile .hint { margin: 0; min-height: 0; }
+@media (max-width: 640px) { .usage-tiles { grid-template-columns: 1fr 1fr; } }
 .usage-table th, .usage-table td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--border); }
 .usage-table td:not(:first-child), .usage-table th:not(:first-child) { text-align: right; }
 

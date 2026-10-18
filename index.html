@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-platform="web" data-build="cfb25fa99c">
+<html lang="en" data-platform="web" data-build="cbc5b6841e">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,8 +8,8 @@
   <title>AlgeBro · Lesson Packet Builder</title>
   <meta name="description" content="Turns a lesson outline into a full TEKS-aligned lesson packet with Claude.">
   <link rel="icon" href="icon.png">
-  <link rel="stylesheet" href="css/app.css?v=cfb25fa99c">
-  <link rel="stylesheet" href="css/web.css?v=cfb25fa99c">
+  <link rel="stylesheet" href="css/app.css?v=cbc5b6841e">
+  <link rel="stylesheet" href="css/web.css?v=cbc5b6841e">
 </head>
 <body>
   <header class="topbar">
@@ -287,12 +287,34 @@ Students show learning by explaining one problem two ways: with a model and with
         <div id="usage-models"></div>
       </div>
       <div class="card">
-        <h2>By month</h2>
+        <div class="usage-head">
+          <h2>History</h2>
+          <div class="segmented" role="group" aria-label="Show totals by">
+            <button type="button" data-period="day">By day</button>
+            <button type="button" data-period="week">By week</button>
+            <button type="button" data-period="month" class="active">By month</button>
+          </div>
+        </div>
         <table class="usage-table">
-          <thead><tr><th>Month</th><th>Sections written</th><th>Tokens in</th><th>Tokens out</th><th>Estimated cost</th></tr></thead>
+          <thead><tr><th id="usage-period-label">Month</th><th>Sections written</th><th>Tokens in</th><th>Tokens out</th><th>Estimated cost</th></tr></thead>
           <tbody id="usage-history"></tbody>
         </table>
         <p id="usage-empty" class="muted" hidden>No usage yet. Costs appear here after your first <span data-web="generation">real (non-MOCK) generation</span>.</p>
+      </div>
+      <div class="card">
+        <h2>Running totals</h2>
+        <div class="usage-tiles">
+          <div class="usage-tile"><span class="usage-tile-label">Today</span>
+            <span class="usage-tile-cost" id="usage-today">$0.00</span><span class="hint" id="usage-today-detail"></span></div>
+          <div class="usage-tile"><span class="usage-tile-label">This week</span>
+            <span class="usage-tile-cost" id="usage-week">$0.00</span><span class="hint" id="usage-week-detail"></span></div>
+          <div class="usage-tile"><span class="usage-tile-label">This month</span>
+            <span class="usage-tile-cost" id="usage-month">$0.00</span><span class="hint" id="usage-month-tile-detail"></span></div>
+          <div class="usage-tile"><span class="usage-tile-label">All time</span>
+            <span class="usage-tile-cost" id="usage-all">$0.00</span><span class="hint" id="usage-all-detail"></span></div>
+        </div>
+        <p class="hint">Weeks run Sunday to Saturday. Only you see these: they're kept
+          <span data-web="in this browser, on this computer">on this computer</span>.</p>
       </div>
       <p class="muted">These are estimates from the prices <span data-web="built into the app">in config.yaml</span>. Your actual bill is at
         <a href="https://platform.claude.com" target="_blank" rel="noopener">platform.claude.com</a> (open Usage or Billing).
@@ -430,6 +452,6 @@ Students show learning by explaining one problem two ways: with a model and with
     </section>
   </main>
 
-  <script type="module" src="js/web_boot.js?v=cfb25fa99c"></script>
+  <script type="module" src="js/web_boot.js?v=cbc5b6841e"></script>
 </body>
 </html>

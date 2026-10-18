@@ -1,8 +1,8 @@
 // Word (.docx) export. Real Word headings, lists, and tables, so the file stays fully editable.
 // The browser version of app/export_docx.py, built with the bundled "docx" library (vendor/).
 
-import { REVIEW_NOTE, columnWeights } from "./export.js?v=cfb25fa99c";
-import { loadScript } from "./vendor.js?v=cfb25fa99c";
+import { REVIEW_NOTE, columnWeights } from "./export.js?v=cbc5b6841e";
+import { loadScript } from "./vendor.js?v=cbc5b6841e";
 
 const PAGE_WIDTH_INCHES = 8.5;
 const TWIPS_PER_INCH = 1440;

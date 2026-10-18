@@ -1,7 +1,7 @@
 // Turns a packet (or one section of it) into a Word, PDF, PowerPoint, or Markdown file.
 // The browser version of app/export.py (and packets.to_markdown): keep them in step.
 
-import { clean, parse, plain } from "./markdown_blocks.js?v=cfb25fa99c";
+import { clean, parse, plain } from "./markdown_blocks.js?v=cbc5b6841e";
 
 export const FORMATS = { docx: "Word", pdf: "PDF", pptx: "PowerPoint", md: "Markdown" };
 
@@ -49,14 +49,14 @@ export async function build(packet, sectionId, format, config) {
     style,
   };
   if (format === "docx") {
-    const { toDocx } = await import("./export_docx.js?v=cfb25fa99c");
+    const { toDocx } = await import("./export_docx.js?v=cbc5b6841e");
     return { blob: await toDocx(doc), filename };
   }
   if (format === "pdf") {
-    const { toPdf } = await import("./export_pdf.js?v=cfb25fa99c");
+    const { toPdf } = await import("./export_pdf.js?v=cbc5b6841e");
     return { blob: await toPdf(doc), filename };
   }
-  const { toPptx } = await import("./export_pptx.js?v=cfb25fa99c");
+  const { toPptx } = await import("./export_pptx.js?v=cbc5b6841e");
   return { blob: await toPptx(doc), filename };
 }
 

@@ -2,8 +2,8 @@
 // The browser version of app/export_pdf.py: same layout. Arimo looks and measures like Arial,
 // which can't be put on a website; Word and PowerPoint files still use Arial.
 
-import { REVIEW_NOTE, columnWeights, hexColor } from "./export.js?v=cfb25fa99c";
-import { loadScript } from "./vendor.js?v=cfb25fa99c";
+import { REVIEW_NOTE, columnWeights, hexColor } from "./export.js?v=cbc5b6841e";
+import { loadScript } from "./vendor.js?v=cbc5b6841e";
 
 const FONT_FOLDER = "vendor/arimo-4a6255f";
 const FONT_FILES = { normal: "Arimo-Regular.ttf", bold: "Arimo-Bold.ttf",
