@@ -55,6 +55,7 @@ export const db = {
   put: (store, value, key) => run(store, "readwrite", (s) => (key === undefined ? s.put(value) : s.put(value, key))),
   add: (store, value) => run(store, "readwrite", (s) => s.add(value)),
   delete: (store, key) => run(store, "readwrite", (s) => s.delete(key)),
+  clear: (store) => run(store, "readwrite", (s) => s.clear()),
 };
 
 // ---- The API key ----

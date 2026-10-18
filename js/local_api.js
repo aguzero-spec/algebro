@@ -3,11 +3,11 @@
 // those calls come here instead and are answered inside the browser. Same checks and
 // messages as server.py: keep them in step.
 
-import { GenerationError, generate as claudeGenerate, testKey } from "./claude.js?v=c70461b0d2";
-import { ExportError, build as buildExport, defaultTitle, toMarkdown } from "./export.js?v=c70461b0d2";
-import { build as buildPrompt } from "./prompts.js?v=c70461b0d2";
-import { StorageError, db, keyStore } from "./store.js?v=c70461b0d2";
-import { loadScript } from "./vendor.js?v=c70461b0d2";
+import { GenerationError, generate as claudeGenerate, testKey } from "./claude.js?v=cfb25fa99c";
+import { ExportError, build as buildExport, defaultTitle, toMarkdown } from "./export.js?v=cfb25fa99c";
+import { build as buildPrompt } from "./prompts.js?v=cfb25fa99c";
+import { StorageError, db, keyStore } from "./store.js?v=cfb25fa99c";
+import { loadScript } from "./vendor.js?v=cfb25fa99c";
 
 // Packet ids become storage keys and file names, so only allow safe characters.
 const SAFE_ID = /^[A-Za-z0-9_-]{1,120}$/;
@@ -194,6 +194,7 @@ const ROUTES = [
   ["POST", /^\/api\/packets$/, savePacket],
   ["DELETE", /^\/api\/packets\/([^/]+)$/, (_, id) => deletePacket(id)],
   ["GET", /^\/api\/usage$/, usageSummary],
+  ["POST", /^\/api\/usage\/reset$/, async () => { await db.clear("usage"); return usageSummary(); }],
   ["POST", /^\/api\/export$/, exportPacket],
   // Web only: the Settings page editors (the desktop app uses files in its data folder instead).
   ["GET", /^\/api\/web\/settings$/, webSettings],

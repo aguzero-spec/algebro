@@ -1,7 +1,7 @@
 // The Settings page editors of the web version: Claude settings, sections, and prompts.
 // (The desktop apps keep these as files in their data folder instead.)
 
-import { handle as api } from "./local_api.js?v=c70461b0d2";
+import { handle as api } from "./local_api.js?v=cfb25fa99c";
 
 const $ = (selector) => document.querySelector(selector);
 let SETTINGS = null;      // the latest reply from /api/web/settings

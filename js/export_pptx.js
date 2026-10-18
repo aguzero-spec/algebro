@@ -8,9 +8,9 @@
 // - A paragraph starting with "Notes:" becomes that slide's speaker notes.
 // The "Presentation Slides" section is written by Claude in exactly this shape.
 
-import { columnWeights, hexColor } from "./export.js?v=c70461b0d2";
-import { plain } from "./markdown_blocks.js?v=c70461b0d2";
-import { loadScript } from "./vendor.js?v=c70461b0d2";
+import { columnWeights, hexColor } from "./export.js?v=cfb25fa99c";
+import { plain } from "./markdown_blocks.js?v=cfb25fa99c";
+import { loadScript } from "./vendor.js?v=cfb25fa99c";
 
 const MAX_ITEMS = 7;          // text lines per slide before continuing on the next
 const MAX_CHARS = 650;        // characters per slide before continuing

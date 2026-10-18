@@ -1,7 +1,7 @@
 // Starts the web version: connects the shared interface (app.js, the same one the desktop
 // apps use) to local_api.js instead of a server, then loads the interface.
 
-import { backupFile, download, handle, loadDefaults, restoreBackup } from "./local_api.js?v=c70461b0d2";
+import { backupFile, download, handle, loadDefaults, restoreBackup } from "./local_api.js?v=cfb25fa99c";
 
 // Refuse to run inside another website's frame (a look-alike page could trick clicks;
 // GitHub Pages can't send the header that normally prevents this).
@@ -56,7 +56,7 @@ try {
   await loadDefaults();
   await loadClassic(`js/markdown.js?v=${build}`);
   await loadClassic(`js/app.js?v=${build}`);
-  const { startSettingsEditors } = await import("./settings_ui.js?v=c70461b0d2");
+  const { startSettingsEditors } = await import("./settings_ui.js?v=cfb25fa99c");
   await startSettingsEditors();
 } catch (e) {
   const banner = document.querySelector("#error-banner");
@@ -102,5 +102,20 @@ $("#backup-file").addEventListener("change", async (event) => {
     say(`Restored from “${file.name}”: ${parts.join(", ")}. See the Saved page.`);
   } catch (e) {
     say(e.message, true);
+  }
+});
+
+// ---- Usage page: start the count over (it's only this browser's estimate; the real bill is unaffected) ----
+
+document.querySelector("#usage-reset").addEventListener("click", async () => {
+  if (!confirm("Reset the usage count in this browser to zero? This only clears the estimate shown here; "
+    + "your actual bill at platform.claude.com isn't affected.")) return;
+  try {
+    await handle("/api/usage/reset", { method: "POST" });
+    await window.loadUsage?.();
+  } catch (e) {
+    const banner = document.querySelector("#error-banner");
+    banner.textContent = e.message;
+    banner.hidden = false;
   }
 });
