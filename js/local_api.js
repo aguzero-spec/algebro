@@ -3,11 +3,11 @@
 // those calls come here instead and are answered inside the browser. Same checks and
 // messages as server.py: keep them in step.
 
-import { GenerationError, generate as claudeGenerate, testKey } from "./claude.js?v=cbc5b6841e";
-import { ExportError, build as buildExport, defaultTitle, toMarkdown } from "./export.js?v=cbc5b6841e";
-import { build as buildPrompt } from "./prompts.js?v=cbc5b6841e";
-import { StorageError, db, keyStore } from "./store.js?v=cbc5b6841e";
-import { loadScript } from "./vendor.js?v=cbc5b6841e";
+import { GenerationError, generate as claudeGenerate, testKey } from "./claude.js?v=915ff20897";
+import { ExportError, build as buildExport, defaultTitle, toMarkdown } from "./export.js?v=915ff20897";
+import { build as buildPrompt } from "./prompts.js?v=915ff20897";
+import { StorageError, db, keyStore } from "./store.js?v=915ff20897";
+import { loadScript } from "./vendor.js?v=915ff20897";
 
 // Packet ids become storage keys and file names, so only allow safe characters.
 const SAFE_ID = /^[A-Za-z0-9_-]{1,120}$/;
@@ -194,7 +194,8 @@ const ROUTES = [
   ["POST", /^\/api\/packets$/, savePacket],
   ["DELETE", /^\/api\/packets\/([^/]+)$/, (_, id) => deletePacket(id)],
   ["GET", /^\/api\/usage$/, usageSummary],
-  ["POST", /^\/api\/usage\/reset$/, async () => { await db.clear("usage"); return usageSummary(); }],
+  // "Start the count over": totals restart from now; every record is kept.
+  ["POST", /^\/api\/usage\/reset$/, async () => { await db.put("settings", localIso(), "usage_since"); return usageSummary(); }],
   ["POST", /^\/api\/export$/, exportPacket],
   // Web only: the Settings page editors (the desktop app uses files in its data folder instead).
   ["GET", /^\/api\/web\/settings$/, webSettings],
@@ -560,9 +561,16 @@ async function usageSummary() {
   const byModel = {};
   const thisMonth = localIso().slice(0, 7);
   const empty = () => ({ calls: 0, input_tokens: 0, output_tokens: 0, cost: 0, unpriced_calls: 0 });
+  const since = (await db.get("settings", "usage_since")) || "";
+  const records = [];
   for (const row of await db.all("usage")) {
     const day = String(row.time || "").slice(0, 10);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) continue;
+    records.push({ time: String(row.time), model: String(row.model || ""), section: String(row.section || ""),
+                   input_tokens: (row.input_tokens || 0) + (row.cache_write_tokens || 0) + (row.cache_read_tokens || 0),
+                   output_tokens: row.output_tokens || 0,
+                   cost: typeof row.estimated_cost_usd === "number" ? row.estimated_cost_usd : null });
+    if (String(row.time) < since) continue; // before "Start the count over": in the records, not the totals
     const month = day.slice(0, 7);
     for (const m of [months[month] ??= empty(), days[day] ??= empty()]) {
       m.calls++;
@@ -585,6 +593,8 @@ async function usageSummary() {
     history,
     days: Object.entries(days).sort((a, b) => (a[0] < b[0] ? 1 : -1))
       .map(([date, v]) => ({ date, ...v, cost: Math.round(v.cost * 1e4) / 1e4 })),
+    records: records.sort((a, b) => (a.time < b.time ? 1 : -1)),
+    counting_since: since || null,
     log_file: "",
   };
 }
@@ -595,6 +605,25 @@ async function exportPacket(body) {
   const { blob, filename } = await buildExport(body.packet, body.section_id || null, body.format, config());
   download(blob, filename);
   return { downloaded: true, name: filename };
+}
+
+// Every usage record as a spreadsheet file (CSV opens in Excel, Numbers, and Google Sheets).
+export async function usageCsv() {
+  const { records } = await usageSummary();
+  const cell = (v) => (/[",\n]/.test(String(v)) ? `"${String(v).replaceAll('"', '""')}"` : String(v));
+  const lines = [["Date and time", "Section", "Model", "Tokens in", "Tokens out", "Estimated cost (USD)"].join(",")];
+  const sectionName = (id) => {
+    const revise = id.endsWith(" (revise)");
+    const base = revise ? id.slice(0, -" (revise)".length) : id;
+    const name = sections().find((s) => s.id === base)?.name || base.replaceAll("_", " ");
+    return revise ? `${name} (Quick change)` : name;
+  };
+  for (const r of records) {
+    lines.push([r.time.replace("T", " "), sectionName(r.section), r.model, r.input_tokens, r.output_tokens,
+                r.cost === null ? "" : r.cost.toFixed(4)].map(cell).join(","));
+  }
+  return { blob: new Blob(["\ufeff" + lines.join("\r\n") + "\r\n"], { type: "text/csv;charset=utf-8" }),
+           filename: `Lesson Packet Builder usage ${localIso().slice(0, 10)}.csv`, count: records.length };
 }
 
 export function download(blob, filename) {

@@ -795,8 +795,10 @@ async function loadUsage() {
       : "";
 
     USAGE = u;
+    RECORDS_SHOWN = RECORDS_PAGE;
     showUsageHistory();
     showRunningTotals();
+    showUsageRecords();
     $("#usage-empty").hidden = u.history.length > 0;
   } catch (e) {
     showError(e.message);
@@ -870,6 +872,50 @@ function showUsageHistory() {
     }
   }
 }
+
+// ---- All records: every section written, newest first ----
+
+const RECORDS_PAGE = 50;
+let RECORDS_SHOWN = RECORDS_PAGE;
+
+function recordSectionName(id) {
+  const revise = id.endsWith(" (revise)");
+  const base = revise ? id.slice(0, -" (revise)".length) : id;
+  const name = SECTIONS.find((s) => s.id === base)?.name || base.replaceAll("_", " ");
+  return revise ? `${name} · Quick change` : name;
+}
+
+function showUsageRecords() {
+  const records = USAGE?.records || [];
+  const body = $("#usage-records");
+  body.innerHTML = "";
+  for (const r of records.slice(0, RECORDS_SHOWN)) {
+    const when = new Date(r.time);
+    const row = body.insertRow();
+    const values = [
+      Number.isNaN(when.getTime()) ? r.time : when.toLocaleString([], { dateStyle: "medium", timeStyle: "short" }),
+      recordSectionName(r.section), r.input_tokens.toLocaleString(), r.output_tokens.toLocaleString(),
+      r.cost === null ? "no price" : money(r.cost),
+    ];
+    for (const value of values) row.insertCell().textContent = value;
+  }
+  $("#usage-records-empty").hidden = records.length > 0;
+  const more = $("#usage-more");
+  more.hidden = records.length <= RECORDS_SHOWN;
+  more.textContent = `Show more (${(records.length - RECORDS_SHOWN).toLocaleString()} older)`;
+  $("#usage-since").textContent = USAGE?.counting_since
+    ? `Totals count from ${new Date(USAGE.counting_since).toLocaleString([], { dateStyle: "medium", timeStyle: "short" })}, `
+      + "when you started the count over; all records are kept below."
+    : "";
+}
+
+$("#usage-more").addEventListener("click", () => {
+  RECORDS_SHOWN += RECORDS_PAGE;
+  showUsageRecords();
+});
+
+$("#usage-show-file").addEventListener("click", () =>
+  api("/api/open/data", { method: "POST" }).catch((e) => showError(e.message)));
 
 document.querySelectorAll(".segmented button").forEach((b) => b.addEventListener("click", () => {
   USAGE_PERIOD = b.dataset.period;

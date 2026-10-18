@@ -1,7 +1,7 @@
 // Starts the web version: connects the shared interface (app.js, the same one the desktop
 // apps use) to local_api.js instead of a server, then loads the interface.
 
-import { backupFile, download, handle, loadDefaults, restoreBackup } from "./local_api.js?v=cbc5b6841e";
+import { backupFile, download, handle, loadDefaults, restoreBackup, usageCsv } from "./local_api.js?v=915ff20897";
 
 // Refuse to run inside another website's frame (a look-alike page could trick clicks;
 // GitHub Pages can't send the header that normally prevents this).
@@ -56,7 +56,7 @@ try {
   await loadDefaults();
   await loadClassic(`js/markdown.js?v=${build}`);
   await loadClassic(`js/app.js?v=${build}`);
-  const { startSettingsEditors } = await import("./settings_ui.js?v=cbc5b6841e");
+  const { startSettingsEditors } = await import("./settings_ui.js?v=915ff20897");
   await startSettingsEditors();
 } catch (e) {
   const banner = document.querySelector("#error-banner");
@@ -105,14 +105,26 @@ $("#backup-file").addEventListener("change", async (event) => {
   }
 });
 
-// ---- Usage page: start the count over (it's only this browser's estimate; the real bill is unaffected) ----
+// ---- Usage page: start the count over (records are kept), and download every record ----
 
 document.querySelector("#usage-reset").addEventListener("click", async () => {
-  if (!confirm("Reset the usage count in this browser to zero? This only clears the estimate shown here; "
-    + "your actual bill at platform.claude.com isn't affected.")) return;
+  if (!confirm("Start the totals over from now? Every record stays in “All records” (and in the download). "
+    + "This only changes the estimates shown here; your actual bill at platform.claude.com isn't affected.")) return;
   try {
     await handle("/api/usage/reset", { method: "POST" });
     await window.loadUsage?.();
+  } catch (e) {
+    const banner = document.querySelector("#error-banner");
+    banner.textContent = e.message;
+    banner.hidden = false;
+  }
+});
+
+document.querySelector("#usage-download").addEventListener("click", async () => {
+  try {
+    const { blob, filename, count } = await usageCsv();
+    if (!count) return;
+    download(blob, filename);
   } catch (e) {
     const banner = document.querySelector("#error-banner");
     banner.textContent = e.message;

@@ -255,6 +255,8 @@ html:not([data-platform="web"]) .web-only, html[data-platform="web"] .desktop-on
 .segmented button { background: none; border: none; padding: 5px 12px; font: inherit; font-size: 14px; color: var(--muted); cursor: pointer; }
 .segmented button + button { border-left: 1px solid var(--border); }
 .segmented button.active { background: var(--accent); color: var(--accent-text); font-weight: 600; }
+.usage-records td:first-child { white-space: nowrap; }
+.usage-records th:nth-child(2), .usage-records td:nth-child(2) { text-align: left; }
 .usage-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .usage-tile { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); }
 .usage-tile-label { font-size: 13px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; }

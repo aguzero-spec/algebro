@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-platform="web" data-build="cbc5b6841e">
+<html lang="en" data-platform="web" data-build="915ff20897">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,8 +8,8 @@
   <title>AlgeBro · Lesson Packet Builder</title>
   <meta name="description" content="Turns a lesson outline into a full TEKS-aligned lesson packet with Claude.">
   <link rel="icon" href="icon.png">
-  <link rel="stylesheet" href="css/app.css?v=cbc5b6841e">
-  <link rel="stylesheet" href="css/web.css?v=cbc5b6841e">
+  <link rel="stylesheet" href="css/app.css?v=915ff20897">
+  <link rel="stylesheet" href="css/web.css?v=915ff20897">
 </head>
 <body>
   <header class="topbar">
@@ -314,13 +314,29 @@ Students show learning by explaining one problem two ways: with a model and with
             <span class="usage-tile-cost" id="usage-all">$0.00</span><span class="hint" id="usage-all-detail"></span></div>
         </div>
         <p class="hint">Weeks run Sunday to Saturday. Only you see these: they're kept
-          <span data-web="in this browser, on this computer">on this computer</span>.</p>
+          <span data-web="in this browser, on this computer">on this computer</span>.
+          <span id="usage-since"></span></p>
+      </div>
+      <div class="card">
+        <div class="usage-head">
+          <h2>All records</h2>
+          <button type="button" class="button secondary small web-only" id="usage-download">Download all records</button>
+          <button type="button" class="button secondary small desktop-only" id="usage-show-file">Show the records file</button>
+        </div>
+        <p class="hint">Every section Claude has written for you, newest first: when, which section, and what it cost.
+          The download opens in Excel, Numbers, or Google Sheets.</p>
+        <table class="usage-table usage-records">
+          <thead><tr><th>Date and time</th><th>Section</th><th>Tokens in</th><th>Tokens out</th><th>Estimated cost</th></tr></thead>
+          <tbody id="usage-records"></tbody>
+        </table>
+        <p id="usage-records-empty" class="muted" hidden>No records yet.</p>
+        <p><button type="button" class="link-button" id="usage-more" hidden>Show more</button></p>
       </div>
       <p class="muted">These are estimates from the prices <span data-web="built into the app">in config.yaml</span>. Your actual bill is at
         <a href="https://platform.claude.com" target="_blank" rel="noopener">platform.claude.com</a> (open Usage or Billing).
         The log on this computer keeps only token counts and costs, never packet content.
         <button type="button" class="link-button desktop-only" id="usage-open-folder">Show the log file</button>
-        <button type="button" class="link-button web-only" id="usage-reset">Reset this count to zero</button></p>
+        <button type="button" class="link-button web-only" id="usage-reset">Start the count over</button></p>
     </section>
 
     <!-- ===== Settings ===== -->
@@ -452,6 +468,6 @@ Students show learning by explaining one problem two ways: with a model and with
     </section>
   </main>
 
-  <script type="module" src="js/web_boot.js?v=cbc5b6841e"></script>
+  <script type="module" src="js/web_boot.js?v=915ff20897"></script>
 </body>
 </html>
